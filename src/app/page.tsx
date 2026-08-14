@@ -1,36 +1,45 @@
-import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Education from "@/components/Education";
+import Stats from "@/components/Stats";
+import Work from "@/components/Work";
+import EarlierWork from "@/components/EarlierWork";
 import Experience from "@/components/Experience";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
+import Education from "@/components/Education";
+import Stack from "@/components/Stack";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
-import ProgressBar from "@/components/ProgressBar";
-import ScrollEffects from "@/components/ScrollEffects";
+import Interactions from "@/components/Interactions";
 
 export default function Home() {
   return (
     <>
-      <a href="#main-content" className="skip-link">
+      <a href="#top" className="skip-link">
         Skip to main content
       </a>
-      <ProgressBar />
-      <CustomCursor />
-      <ScrollEffects />
-      <Navbar />
-      <main id="main-content">
-        <Hero />
-        <About />
-        <Education />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
+
+      <div className="ambient" aria-hidden="true">
+        <div className="ambient-glow-a" />
+        <div className="ambient-glow-b" />
+        <div className="ambient-bloom" data-bloom />
+        <div className="ambient-grid" />
+      </div>
+
+      <Interactions />
+
+      <div className="page">
+        <Header />
+        <main className="main" id="top">
+          <Hero />
+          <Stats />
+          <Work />
+          <EarlierWork />
+          <Experience />
+          <Education />
+          <Stack />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
