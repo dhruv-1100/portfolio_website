@@ -1,4 +1,5 @@
-"use client";
+import { ArrowRight } from "lucide-react";
+import { AVAILABILITY, EMAIL } from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -6,7 +7,7 @@ export default function Hero() {
       <div className="hero-container">
         <div className="hero-content-left">
           <div className="hero-badge">
-            <span className="pulse-dot"></span> AVAILABLE FOR CS / ML ROLES
+            <span className="pulse-dot"></span> {AVAILABILITY}
           </div>
           <h1 className="hero-name" id="heroName">
             <span className="name-line">
@@ -18,18 +19,18 @@ export default function Hero() {
           </h1>
           <div className="hero-accent-line"></div>
           <p className="hero-tagline">
-            Building intelligent systems at the intersection of{" "}
-            <strong className="text-highlight">Software Engineering</strong>,{" "}
-            <strong className="text-highlight">Machine Learning</strong>, and
-            High-Performance Computing.
+            Software engineer building at the intersection of{" "}
+            <strong className="text-highlight">distributed systems</strong>,{" "}
+            <strong className="text-highlight">applied machine learning</strong>
+            , and high-performance computing — from Raft consensus engines to
+            on-device multimodal AI.
           </p>
           <div className="hero-cta-group">
             <a href="#projects" className="btn-primary">
-              <span>
-                VIEW WORK <i className="fa-solid fa-arrow-right"></i>
-              </span>
+              <span>VIEW WORK</span>
+              <ArrowRight size={16} aria-hidden="true" />
             </a>
-            <a href="mailto:dhruv.012p@gmail.com" className="btn-secondary">
+            <a href={`mailto:${EMAIL}`} className="btn-secondary">
               <span>GET IN TOUCH ↗</span>
             </a>
           </div>
@@ -39,19 +40,25 @@ export default function Hero() {
           <div className="hero-meta-card glass">
             <div className="meta-row">
               <span className="meta-label">CURRENT ROLE</span>
-              <span className="meta-val">MS CS @ Stony Brook University</span>
+              <span className="meta-val">
+                Software Engineer @ Aaron Technologies
+              </span>
+            </div>
+            <div className="meta-row">
+              <span className="meta-label">EDUCATION</span>
+              <span className="meta-val">
+                MS Computer Science @ Stony Brook (3.61 / 4.00)
+              </span>
             </div>
             <div className="meta-row">
               <span className="meta-label">LOCATION</span>
               <span className="meta-val">New York, USA</span>
             </div>
             <div className="meta-row">
-              <span className="meta-label">SPECIALIZATION</span>
-              <span className="meta-val">Deep Learning & Systems</span>
-            </div>
-            <div className="meta-row">
-              <span className="meta-label">PREVIOUS ALMA MATER</span>
-              <span className="meta-val">DA-IICT (CPI: 8.1 / 10)</span>
+              <span className="meta-label">FOCUS</span>
+              <span className="meta-val">
+                Distributed Systems, ML Infrastructure & AI Agents
+              </span>
             </div>
           </div>
         </div>

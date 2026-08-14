@@ -1,6 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { RESUME_PATH } from "@/lib/site";
+
+const NAV_ITEMS = [
+  { href: "#about", label: "ABOUT", num: "02" },
+  { href: "#education", label: "EDUCATION", num: "03" },
+  { href: "#experience", label: "EXPERIENCE", num: "04" },
+  { href: "#skills", label: "SKILLS", num: "05" },
+  { href: "#projects", label: "PROJECTS", num: "06" },
+  { href: "#contact", label: "CONTACT", num: "07" },
+];
+
+/** Hero (01) plus the six navigable sections. */
+const TOTAL_SECTIONS = NAV_ITEMS.length + 1;
+const TOTAL_LABEL = String(TOTAL_SECTIONS).padStart(2, "0");
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -9,102 +23,84 @@ export default function Navbar() {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let ticking = false;
 
-    const handleScroll = () => {
+    // Queried once rather than on every scroll event.
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>("section[data-section-num]")
+    );
+
+    const update = () => {
+      ticking = false;
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > lastScrollY && currentScrollY > 200) {
-        setHidden(true);
-      } else {
-        setHidden(false);
-      }
+      setHidden(currentScrollY > lastScrollY && currentScrollY > 200);
       lastScrollY = currentScrollY;
 
-      const sections = document.querySelectorAll<HTMLElement>("section[data-section-num]");
-      sections.forEach((sec) => {
+      for (const sec of sections) {
         const top = sec.offsetTop - 300;
-        const height = sec.offsetHeight;
-        if (currentScrollY >= top && currentScrollY < top + height) {
-          const num = sec.getAttribute("data-section-num") || "01";
-          setActiveSection(num);
+        if (currentScrollY >= top && currentScrollY < top + sec.offsetHeight) {
+          setActiveSection(sec.getAttribute("data-section-num") || "01");
         }
-      });
+      }
+    };
+
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const getIndicatorLeft = () => {
-    const num = parseInt(activeSection, 10);
-    return `${((num - 1) / 5) * 100}%`;
-  };
+  const activeIndex = Math.max(0, parseInt(activeSection, 10) - 1);
 
   return (
     <header className={`navbar ${hidden ? "nav-hidden" : ""}`}>
       <div className="nav-container">
-        <a href="#home" className="nav-logo" aria-label="Dhruv Patel Home">
+        <a href="#home" className="nav-logo" aria-label="Dhruv Patel — home">
           DP<span className="logo-dot">.</span>
         </a>
 
         <nav
+          id="primary-navigation"
           className={`nav-links ${mobileOpen ? "mobile-open" : ""}`}
-          aria-label="Main Navigation"
+          aria-label="Main navigation"
         >
-          <a href="#about" className="nav-link" onClick={() => setMobileOpen(false)}>
-            ABOUT
-          </a>
-          <a
-            href="#education"
-            className="nav-link"
-            onClick={() => setMobileOpen(false)}
-          >
-            EDUCATION
-          </a>
-          <a
-            href="#experience"
-            className="nav-link"
-            onClick={() => setMobileOpen(false)}
-          >
-            EXPERIENCE
-          </a>
-          <a
-            href="#skills"
-            className="nav-link"
-            onClick={() => setMobileOpen(false)}
-          >
-            SKILLS
-          </a>
-          <a
-            href="#projects"
-            className="nav-link"
-            onClick={() => setMobileOpen(false)}
-          >
-            PROJECTS
-          </a>
-          <a
-            href="#contact"
-            className="nav-link"
-            onClick={() => setMobileOpen(false)}
-          >
-            CONTACT
-          </a>
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className={`nav-link${
+                activeSection === item.num ? " active" : ""
+              }`}
+              aria-current={activeSection === item.num ? "true" : undefined}
+              onClick={() => setMobileOpen(false)}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
         <div className="nav-actions">
-          <div className="section-indicator" aria-label="Current Section">
+          <div className="section-indicator" aria-hidden="true">
             <span className="indicator-num">{activeSection}</span>
             <span className="indicator-track">
               <span
                 className="indicator-fill"
-                style={{ left: getIndicatorLeft() }}
+                style={{
+                  left: `${(activeIndex / TOTAL_SECTIONS) * 100}%`,
+                  width: `${100 / TOTAL_SECTIONS}%`,
+                }}
               ></span>
             </span>
-            <span className="indicator-total">06</span>
+            <span className="indicator-total">{TOTAL_LABEL}</span>
           </div>
 
           <a
-            href="DhruvPatel_Resume.pdf"
+            href={RESUME_PATH}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-resume"
@@ -115,6 +111,8 @@ export default function Navbar() {
           <button
             className="mobile-toggle"
             aria-label="Toggle navigation menu"
+            aria-expanded={mobileOpen}
+            aria-controls="primary-navigation"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             <span></span>

@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Dhruv Patel
 
-## Getting Started
+Personal portfolio site. Next.js 15 App Router, statically exported and
+deployed to GitHub Pages.
 
-First, run the development server:
+**Live:** https://dhruv-1100.github.io/portfolio_website
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # static export to ./out
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path | Purpose |
+| --- | --- |
+| `src/app/layout.tsx` | Fonts, metadata, Open Graph, `Person` JSON-LD |
+| `src/app/page.tsx` | Section composition (server component) |
+| `src/lib/site.ts` | Name, contact details, links, deploy-dependent paths |
+| `src/components/` | One component per section |
+| `src/components/ScrollEffects.tsx` | Document-level reveal, timeline and tilt effects |
+| `public/DhruvPatel_Resume.pdf` | Resume served by the nav "RESUME" button |
+| `public/og-image.png` | 1200×630 social preview card |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Contact details, links and the availability badge all come from
+`src/lib/site.ts` — change them there, not in individual components.
 
-## Learn More
+## Content updates
 
-To learn more about Next.js, take a look at the following resources:
+- **Resume:** replace `public/DhruvPatel_Resume.pdf` and mirror any changes
+  into the relevant section components so the site and PDF stay in sync.
+- **Projects:** edit the `PROJECTS` array in `src/components/Projects.tsx`.
+  Add a repository or demo link by filling in a project's `links` array; a
+  project with an empty `links` array simply renders no link row.
+- **Skills:** edit the `GROUPS` array in `src/components/Skills.tsx`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every
+push to `main`.
 
-## Deploy on Vercel
+Because this is a Pages *project* site served from `/portfolio_website/`, the
+build sets `NEXT_PUBLIC_BASE_PATH`; without it the exported `_next/*` asset
+URLs 404. If a custom domain is added later, clear `NEXT_PUBLIC_BASE_PATH` and
+point `NEXT_PUBLIC_SITE_URL` at the new domain.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Accessibility & motion
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site ships a skip link, visible focus rings, and labelled navigation
+state. All animation — scroll reveals, card tilt, the custom cursor, and the
+stat count-up — is disabled under `prefers-reduced-motion: reduce`, and a
+`<noscript>` fallback guarantees content is visible with JavaScript disabled.
