@@ -11,8 +11,10 @@ const size = { width: 1200, height: 630 };
  * no font blobs in the repo.
  */
 export function GET() {
-  const accent = "#00ffc2";
-  const ink = "#f0e6d3";
+  const accent = "#6fa8ff";
+  const mint = "#78ffde";
+  const ink = "#eef1f5";
+  const muted = "#8f959f";
 
   return new ImageResponse(
     (
@@ -24,7 +26,7 @@ export function GET() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "72px 80px",
-          background: "#0c0c0c",
+          background: "#0b0d10",
           color: ink,
           position: "relative",
         }}
@@ -32,13 +34,25 @@ export function GET() {
         <div
           style={{
             position: "absolute",
-            top: -220,
-            right: -180,
-            width: 640,
-            height: 640,
-            borderRadius: 320,
+            top: -240,
+            left: -140,
+            width: 720,
+            height: 720,
+            borderRadius: 360,
             background:
-              "radial-gradient(circle, rgba(0,255,194,0.16) 0%, rgba(0,255,194,0) 68%)",
+              "radial-gradient(circle, rgba(111,168,255,0.18) 0%, rgba(111,168,255,0) 68%)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: -280,
+            right: -180,
+            width: 760,
+            height: 760,
+            borderRadius: 380,
+            background:
+              "radial-gradient(circle, rgba(120,255,222,0.11) 0%, rgba(120,255,222,0) 66%)",
           }}
         />
 
@@ -51,61 +65,44 @@ export function GET() {
             marginBottom: 36,
             padding: "10px 22px",
             borderRadius: 9999,
-            border: "1px solid rgba(0,255,194,0.26)",
-            background: "rgba(0,255,194,0.10)",
-            color: accent,
+            border: "1px solid rgba(120,255,222,0.24)",
+            background: "rgba(120,255,222,0.08)",
+            color: mint,
             fontSize: 20,
             letterSpacing: 1.6,
           }}
         >
           <div
-            style={{
-              width: 10,
-              height: 10,
-              borderRadius: 5,
-              background: accent,
-            }}
+            style={{ width: 10, height: 10, borderRadius: 5, background: mint }}
           />
           {AVAILABILITY}
         </div>
 
         <div
           style={{
-            fontSize: 104,
-            fontWeight: 700,
-            letterSpacing: -3,
-            lineHeight: 1,
+            fontSize: 62,
+            fontWeight: 500,
+            letterSpacing: -1.6,
+            lineHeight: 1.15,
+            maxWidth: 960,
             marginBottom: 28,
           }}
         >
-          DHRUV PATEL
+          Dhruv Patel — software engineer working on distributed systems and ML
+          infrastructure.
         </div>
 
         <div
           style={{
             width: 96,
-            height: 4,
+            height: 3,
             borderRadius: 2,
             background: accent,
             marginBottom: 32,
           }}
         />
 
-        <div
-          style={{
-            display: "flex",
-            fontSize: 30,
-            lineHeight: 1.45,
-            color: "rgba(240,230,211,0.70)",
-            maxWidth: 900,
-            marginBottom: 46,
-          }}
-        >
-          Software engineer building at the intersection of distributed systems,
-          applied machine learning, and high-performance computing.
-        </div>
-
-        <div style={{ display: "flex", gap: 16 }}>
+        <div style={{ display: "flex", gap: 14 }}>
           {[
             "MS CS @ Stony Brook",
             "SWE @ Aaron Technologies",
@@ -116,10 +113,10 @@ export function GET() {
               style={{
                 display: "flex",
                 padding: "12px 24px",
-                borderRadius: 9999,
-                border: "1px solid rgba(255,240,220,0.12)",
-                background: "rgba(255,240,220,0.05)",
-                color: "rgba(240,230,211,0.85)",
+                borderRadius: 8,
+                border: "1px solid rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.045)",
+                color: muted,
                 fontSize: 20,
               }}
             >

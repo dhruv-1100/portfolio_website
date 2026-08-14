@@ -18,12 +18,14 @@ npm run build    # static export to ./out
 | Path | Purpose |
 | --- | --- |
 | `src/app/layout.tsx` | Fonts, metadata, Open Graph, `Person` JSON-LD |
-| `src/app/page.tsx` | Section composition (server component) |
+| `src/app/page.tsx` | Section composition and ambient background (server component) |
+| `src/app/globals.css` | Design tokens and every component style |
 | `src/lib/site.ts` | Name, contact details, links, deploy-dependent paths |
 | `src/components/` | One component per section |
-| `src/components/ScrollEffects.tsx` | Document-level reveal, timeline and tilt effects |
-| `public/DhruvPatel_Resume.pdf` | Resume served by the nav "RESUME" button |
-| `public/og-image.png` | 1200×630 social preview card |
+| `src/components/Interactions.tsx` | Header state, pointer bloom, row hover, tilt, reveal, count-up |
+| `src/components/Work.tsx` | Filterable project table (client component) |
+| `src/app/og-image.png/route.tsx` | 1200×630 social card, generated at build time |
+| `public/DhruvPatel_Resume.pdf` | Resume served by the `resume.pdf` links |
 
 Contact details, links and the availability badge all come from
 `src/lib/site.ts` — change them there, not in individual components.
@@ -32,10 +34,19 @@ Contact details, links and the availability badge all come from
 
 - **Resume:** replace `public/DhruvPatel_Resume.pdf` and mirror any changes
   into the relevant section components so the site and PDF stay in sync.
-- **Projects:** edit the `PROJECTS` array in `src/components/Projects.tsx`.
-  Add a repository or demo link by filling in a project's `links` array; a
-  project with an empty `links` array simply renders no link row.
-- **Skills:** edit the `GROUPS` array in `src/components/Skills.tsx`.
+- **Projects:** edit the `PROJECTS` array in `src/components/Work.tsx`. Each
+  entry carries a `category` (`systems` / `agents` / `ml`) that drives the
+  filter pills and their counts; omit `source` and no link is rendered.
+- **Earlier work:** edit the `EARLIER` array in `src/components/EarlierWork.tsx`.
+- **Stack:** edit the `DEEP`, `SHIPPING` and `WORKING` lists in
+  `src/components/Stack.tsx`.
+
+## Design
+
+The layout comes from `Portfolio - Index.dc.html`, exported from Claude Design.
+Palette is `#0b0d10` base with a `#6fa8ff` blue and `#78ffde` mint accent, set
+in IBM Plex Sans and IBM Plex Mono, over glassmorphism panels and a fixed
+ambient gradient layer.
 
 ## Deployment
 
@@ -49,7 +60,7 @@ point `NEXT_PUBLIC_SITE_URL` at the new domain.
 
 ## Accessibility & motion
 
-The site ships a skip link, visible focus rings, and labelled navigation
-state. All animation — scroll reveals, card tilt, the custom cursor, and the
-stat count-up — is disabled under `prefers-reduced-motion: reduce`, and a
-`<noscript>` fallback guarantees content is visible with JavaScript disabled.
+The site ships a skip link, visible focus rings, and labelled navigation and
+filter controls. All animation — scroll reveals, card tilt, the pointer bloom,
+and the stat count-up — is disabled under `prefers-reduced-motion: reduce`, and
+a `<noscript>` fallback guarantees content is visible with JavaScript disabled.

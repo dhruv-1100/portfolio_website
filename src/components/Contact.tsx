@@ -1,58 +1,47 @@
-import { Github, Linkedin, Mail, Phone, Send } from "lucide-react";
-import { EMAIL, GITHUB, LINKEDIN, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
+import CopyEmailButton from "./CopyEmailButton";
+import {
+  EMAIL,
+  LINKEDIN,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  RESUME_PATH,
+} from "@/lib/site";
 
 export default function Contact() {
   return (
-    <section
-      className="section contact-section"
-      id="contact"
-      data-section-num="07"
-    >
-      <div className="contact-card-wrapper glass reveal">
-        <span className="section-label">GET IN TOUCH</span>
-        <h2 className="contact-headline">
-          LET&apos;S BUILD SOMETHING EXTRAORDINARY.
-        </h2>
-        <p className="contact-subtext">
-          I am targeting full-time Software Engineering, Machine Learning, and
-          Systems roles starting Spring or Summer 2027, when I complete my MS at
-          Stony Brook. Reach out for roles, collaborations, or technical
-          discussions.
-        </p>
-
-        <div className="contact-cta-block">
-          <a href={`mailto:${EMAIL}`} className="btn-primary btn-large">
-            <span>SEND AN EMAIL</span>
-            <Send size={16} aria-hidden="true" />
-          </a>
+    <section className="section-contact" id="contact">
+      <div className="contact-card reveal">
+        <div>
+          <h2 className="contact-title">
+            Targeting full-time software, ML and systems roles from Spring 2027.
+          </h2>
+          <p className="contact-lede">
+            Open to roles, collaborations, or a technical conversation about
+            consensus, surrogate models or on-device inference.
+          </p>
+          <div className="contact-inline">
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            <a href={`tel:${PHONE_HREF}`}>{PHONE_DISPLAY}</a>
+          </div>
         </div>
 
-        <div className="contact-links-grid">
-          <a href={`mailto:${EMAIL}`} className="contact-item-link">
-            <Mail size={16} aria-hidden="true" />
-            <span>{EMAIL}</span>
-          </a>
-          <a href={`tel:${PHONE_HREF}`} className="contact-item-link">
-            <Phone size={16} aria-hidden="true" />
-            <span>{PHONE_DISPLAY}</span>
-          </a>
+        <div className="contact-actions">
+          <CopyEmailButton />
           <a
             href={LINKEDIN}
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-item-link"
+            className="btn-ghost"
           >
-            <Linkedin size={16} aria-hidden="true" />
-            <span>LinkedIn ↗</span>
+            linkedin ↗
           </a>
           <a
-            href={GITHUB}
+            href={RESUME_PATH}
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-item-link"
+            className="btn-ghost"
           >
-            <Github size={16} aria-hidden="true" />
-            <span>GitHub ↗</span>
+            resume.pdf ↗
           </a>
         </div>
       </div>

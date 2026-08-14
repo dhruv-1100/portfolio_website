@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { EMAIL, GITHUB, LINKEDIN, NAME, SITE_URL } from "@/lib/site";
 
-const playfair = Playfair_Display({
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-display",
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-sans",
   display: "swap",
 });
 
-const inter = Inter({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
@@ -104,15 +100,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}
-    >
+    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
       <head>
         {/* Scroll-reveal is progressive enhancement: without JS the content
             must not stay stuck at opacity 0. */}
         <noscript>
-          <style>{`.reveal{opacity:1!important;transform:none!important}.name-text{transform:none!important}`}</style>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
       <body>
