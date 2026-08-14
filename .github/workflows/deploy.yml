@@ -38,8 +38,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # This repo deploys as a GitHub Pages *project* site, so it is served
+      # from /portfolio_website/ rather than the domain root. Without the
+      # basePath the exported _next/* asset URLs 404.
+      # If a custom domain is added later, set both of these to "" and the
+      # domain respectively.
       - name: Build static export
         run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /portfolio_website
+          NEXT_PUBLIC_SITE_URL: https://dhruv-1100.github.io/portfolio_website
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

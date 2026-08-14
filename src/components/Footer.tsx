@@ -1,23 +1,33 @@
-"use client";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { EMAIL, GITHUB, LINKEDIN, NAME } from "@/lib/site";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-container">
         <p className="footer-copy">
-          &copy; 2026 Dhruv Patel. Designed & engineered with restraint.
+          &copy; {new Date().getFullYear()} {NAME}. Designed &amp; engineered
+          with restraint.
         </p>
         <div className="footer-socials">
           <a
-            href="https://www.linkedin.com/in/dhruv-patel-263523213/"
+            href={GITHUB}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <Github size={18} aria-hidden="true" />
+          </a>
+          <a
+            href={LINKEDIN}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
           >
-            <i className="fa-brands fa-linkedin"></i>
+            <Linkedin size={18} aria-hidden="true" />
           </a>
-          <a href="mailto:dhruv.012p@gmail.com" aria-label="Email">
-            <i className="fa-solid fa-envelope"></i>
+          <a href={`mailto:${EMAIL}`} aria-label="Email">
+            <Mail size={18} aria-hidden="true" />
           </a>
         </div>
       </div>

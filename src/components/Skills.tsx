@@ -1,44 +1,134 @@
-"use client";
+import {
+  Brain,
+  Cloud,
+  Code2,
+  Cpu,
+  Database,
+  Globe,
+  type LucideIcon,
+} from "lucide-react";
 
-import { useEffect } from "react";
+type SkillGroup = {
+  tag: string;
+  title: string;
+  icon: LucideIcon;
+  span: string;
+  skills: string[];
+  /** Rendered with the accent border — the ones worth leading with. */
+  highlight: string[];
+};
+
+const GROUPS: SkillGroup[] = [
+  {
+    tag: "CORE LANGUAGES",
+    title: "Polyglot Foundations",
+    icon: Code2,
+    span: "bento-col-6",
+    skills: [
+      "Python",
+      "C++",
+      "C",
+      "Java",
+      "TypeScript",
+      "JavaScript",
+      "SQL",
+      "MATLAB",
+      "R",
+    ],
+    highlight: ["Python", "C++", "TypeScript"],
+  },
+  {
+    tag: "INTELLIGENCE",
+    title: "Machine Learning & AI",
+    icon: Brain,
+    span: "bento-col-6",
+    skills: [
+      "PyTorch",
+      "TensorFlow",
+      "CUDA",
+      "LangGraph",
+      "LangChain",
+      "HuggingFace",
+      "FAISS",
+      "MCP",
+      "OpenRouter",
+      "scikit-learn",
+      "NumPy",
+      "Pandas",
+    ],
+    highlight: ["PyTorch", "CUDA", "LangGraph"],
+  },
+  {
+    tag: "BACKEND & WEB",
+    title: "Product Surfaces",
+    icon: Globe,
+    span: "bento-col-6",
+    skills: [
+      "Next.js",
+      "React",
+      "FastAPI",
+      "Flask",
+      "Node.js",
+      "REST APIs",
+      "WebSockets",
+      "Server-Sent Events",
+    ],
+    highlight: ["Next.js", "FastAPI", "React"],
+  },
+  {
+    tag: "SYSTEMS",
+    title: "Systems & Architecture",
+    icon: Cpu,
+    span: "bento-col-6",
+    skills: [
+      "Distributed Systems",
+      "Concurrency",
+      "Multithreading",
+      "Socket Programming",
+      "System Design",
+      "Object-Oriented Design",
+      "Performance Optimization",
+      "Unix / Linux",
+    ],
+    highlight: ["Distributed Systems", "Concurrency", "Performance Optimization"],
+  },
+  {
+    tag: "CLOUD & DEVOPS",
+    title: "Infrastructure & Delivery",
+    icon: Cloud,
+    span: "bento-col-7",
+    skills: [
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "Azure",
+      "Google Cloud Platform",
+      "CI/CD",
+      "Git / GitHub",
+      "Vercel",
+      "pytest",
+      "JUnit",
+    ],
+    highlight: ["Docker", "Kubernetes", "CI/CD"],
+  },
+  {
+    tag: "PERSISTENCE",
+    title: "Databases",
+    icon: Database,
+    span: "bento-col-5",
+    skills: [
+      "PostgreSQL",
+      "Redis",
+      "MongoDB",
+      "Firestore",
+      "MySQL",
+      "Supabase",
+    ],
+    highlight: ["PostgreSQL", "Redis"],
+  },
+];
 
 export default function Skills() {
-  useEffect(() => {
-    const tiltCards = document.querySelectorAll<HTMLElement>(".tilt-card");
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const card = e.currentTarget as HTMLElement;
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = ((y - centerY) / centerY) * -8;
-      const rotateY = ((x - centerX) / centerX) * 8;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    };
-
-    const handleMouseLeave = (e: MouseEvent) => {
-      const card = e.currentTarget as HTMLElement;
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-    };
-
-    tiltCards.forEach((card) => {
-      card.addEventListener("mousemove", handleMouseMove);
-      card.addEventListener("mouseleave", handleMouseLeave);
-    });
-
-    return () => {
-      tiltCards.forEach((card) => {
-        card.removeEventListener("mousemove", handleMouseMove);
-        card.removeEventListener("mouseleave", handleMouseLeave);
-      });
-    };
-  }, []);
-
   return (
     <section className="section skills-section" id="skills" data-section-num="05">
       <div className="section-header reveal">
@@ -47,94 +137,33 @@ export default function Skills() {
       </div>
 
       <div className="bento-skills-grid reveal">
-        {/* Large Card 1: Languages */}
-        <div className="bento-card glass bento-col-6 bento-row-2 tilt-card">
-          <div className="bento-header">
-            <span className="bento-tag">CORE LANGUAGES</span>
-            <i className="fa-solid fa-code bento-icon"></i>
-          </div>
-          <h3 className="bento-card-title">Polyglot Foundations</h3>
-          <div className="skill-pills-container">
-            <span className="skill-pill highlight">
-              <i className="fa-brands fa-python"></i> Python
-            </span>
-            <span className="skill-pill highlight">
-              <i className="fa-solid fa-c"></i> C++
-            </span>
-            <span className="skill-pill">
-              <i className="fa-brands fa-java"></i> Java
-            </span>
-            <span className="skill-pill">
-              <i className="fa-solid fa-database"></i> SQL
-            </span>
-            <span className="skill-pill">C</span>
-            <span className="skill-pill">MATLAB</span>
-            <span className="skill-pill">R</span>
-            <span className="skill-pill">HTML5 / CSS3</span>
-          </div>
-        </div>
-
-        {/* Large Card 2: ML & AI */}
-        <div className="bento-card glass bento-col-6 bento-row-2 tilt-card">
-          <div className="bento-header">
-            <span className="bento-tag">INTELLIGENCE</span>
-            <i className="fa-solid fa-brain bento-icon"></i>
-          </div>
-          <h3 className="bento-card-title">Machine Learning & AI</h3>
-          <div className="skill-pills-container">
-            <span className="skill-pill highlight">PyTorch</span>
-            <span className="skill-pill highlight">TensorFlow</span>
-            <span className="skill-pill">Scikit-Learn</span>
-            <span className="skill-pill">Keras</span>
-            <span className="skill-pill">NumPy</span>
-            <span className="skill-pill">Pandas</span>
-            <span className="skill-pill">Computer Vision</span>
-            <span className="skill-pill">Adversarial ML</span>
-          </div>
-        </div>
-
-        {/* Medium Card 3: Cloud & Tools */}
-        <div className="bento-card glass bento-col-7 bento-row-2 tilt-card">
-          <div className="bento-header">
-            <span className="bento-tag">DEVOPS & CLOUD</span>
-            <i className="fa-solid fa-cloud bento-icon"></i>
-          </div>
-          <h3 className="bento-card-title">Infrastructure & Platforms</h3>
-          <div className="skill-pills-container">
-            <span className="skill-pill highlight">
-              <i className="fa-brands fa-git-alt"></i> Git / GitHub
-            </span>
-            <span className="skill-pill">
-              <i className="fa-brands fa-docker"></i> Kubernetes
-            </span>
-            <span className="skill-pill">Google Cloud (GCP)</span>
-            <span className="skill-pill">Microsoft Azure</span>
-            <span className="skill-pill">
-              <i className="fa-brands fa-linux"></i> Linux Clusters
-            </span>
-            <span className="skill-pill">PostgreSQL</span>
-            <span className="skill-pill">MySQL</span>
-            <span className="skill-pill">
-              <i className="fa-brands fa-react"></i> React
-            </span>
-          </div>
-        </div>
-
-        {/* Medium Card 4: Hardware & Domains */}
-        <div className="bento-card glass bento-col-5 bento-row-2 tilt-card">
-          <div className="bento-header">
-            <span className="bento-tag">HARDWARE & FOCUS</span>
-            <i className="fa-solid fa-microchip bento-icon"></i>
-          </div>
-          <h3 className="bento-card-title">Systems & Hardware</h3>
-          <div className="skill-pills-container">
-            <span className="skill-pill">Arduino</span>
-            <span className="skill-pill">LTSpice</span>
-            <span className="skill-pill">Keil</span>
-            <span className="skill-pill">Cisco Packet Tracer</span>
-            <span className="skill-pill highlight">HPC & Parallel Computing</span>
-          </div>
-        </div>
+        {GROUPS.map((group) => {
+          const Icon = group.icon;
+          return (
+            <div
+              className={`bento-card glass ${group.span} tilt-card`}
+              key={group.tag}
+            >
+              <div className="bento-header">
+                <span className="bento-tag">{group.tag}</span>
+                <Icon className="bento-icon" size={20} aria-hidden="true" />
+              </div>
+              <h3 className="bento-card-title">{group.title}</h3>
+              <div className="skill-pills-container">
+                {group.skills.map((skill) => (
+                  <span
+                    className={`skill-pill${
+                      group.highlight.includes(skill) ? " highlight" : ""
+                    }`}
+                    key={skill}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

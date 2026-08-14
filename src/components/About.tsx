@@ -2,48 +2,69 @@
 
 import { useEffect, useRef } from "react";
 
+const STATS = [
+  { target: 45, suffix: "%", decimals: 0, label: "PIC SIMULATION SPEEDUP" },
+  { target: 200, suffix: "+", decimals: 0, label: "TPS UNDER RAFT CONSENSUS" },
+  { target: 3.61, suffix: "", decimals: 2, label: "GRADUATE GPA / 4.00" },
+  { target: 1, suffix: "ST", decimals: 0, label: "BAND OF AGENTS HACKATHON" },
+];
+
 export default function About() {
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const node = statsRef.current;
+    if (!node) return;
+
+    const format = (el: HTMLElement, value: number) => {
+      const suffix = el.getAttribute("data-suffix") || "";
+      const decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
+      el.textContent = value.toFixed(decimals) + suffix;
+    };
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll<HTMLElement>(".stat-number");
-            statNumbers.forEach((num) => {
-              const target = parseFloat(num.getAttribute("data-target") || "0");
-              const suffix = num.getAttribute("data-suffix") || "";
-              const decimals = parseInt(num.getAttribute("data-decimals") || "0", 10);
-              const start = 0;
-              const duration = 1500;
-              const startTime = performance.now();
+          if (!entry.isIntersecting) return;
 
-              const updateCount = (currentTime: number) => {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const currentVal = start + (target - start) * progress;
+          const statNumbers =
+            entry.target.querySelectorAll<HTMLElement>(".stat-number");
 
-                num.textContent = currentVal.toFixed(decimals) + suffix;
+          statNumbers.forEach((num) => {
+            const target = parseFloat(num.getAttribute("data-target") || "0");
 
-                if (progress < 1) {
-                  requestAnimationFrame(updateCount);
-                }
-              };
+            // Respect reduced-motion: show the final value, skip the count-up.
+            if (reduceMotion) {
+              format(num, target);
+              return;
+            }
 
-              requestAnimationFrame(updateCount);
-            });
-            observer.unobserve(entry.target);
-          }
+            const duration = 1500;
+            const startTime = performance.now();
+
+            const updateCount = (currentTime: number) => {
+              const progress = Math.min(
+                (currentTime - startTime) / duration,
+                1
+              );
+              format(num, target * progress);
+              if (progress < 1) requestAnimationFrame(updateCount);
+            };
+
+            requestAnimationFrame(updateCount);
+          });
+
+          observer.unobserve(entry.target);
         });
       },
       { threshold: 0.3 }
     );
 
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-
+    observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
@@ -57,56 +78,52 @@ export default function About() {
       <div className="about-grid reveal">
         <div className="about-text-column">
           <p className="about-lead">
-            I am a Computer Science Graduate Student at{" "}
-            <strong className="text-highlight">Stony Brook University</strong>, driven
-            by a passion for solving complex computational bottlenecks and
-            architecting resilient software.
+            I am a software engineer and MS Computer Science candidate at{" "}
+            <strong className="text-highlight">Stony Brook University</strong>,
+            currently the sole engineer behind a production B2B industrial
+            sourcing platform at Aaron Technologies.
           </p>
           <p>
-            My foundation was built at{" "}
-            <strong className="text-highlight">DA-IICT</strong>, where I earned my
-            B.Tech. (Honours) in ICT with a Minor in Computational Science (CPI:
-            8.1/10). My research ranges from accelerating scientific simulations
-            using hybrid deep learning architectures (U-Net) to benchmarking
-            automated test-case prioritization algorithms.
+            My work runs from the systems layer up. I have implemented{" "}
+            <strong className="text-highlight">
+              Raft and Multi-Paxos consensus
+            </strong>{" "}
+            for a strictly serializable transaction engine, replaced the
+            dominant bottleneck in device-scale plasma simulations with a U-Net
+            surrogate model (presented at{" "}
+            <strong className="text-highlight">APS GEC 2025</strong>), and
+            shipped a fully on-device multimodal AI compliance platform
+            orchestrating five models on local CUDA.
           </p>
           <p>
-            Whether optimizing CUDA kernels, engineering full-stack Web & Mobile
-            solutions, or training computer vision models against adversarial
-            attacks, I thrive on turning mathematical concepts into robust code.
+            Before Stony Brook I earned a B.Tech. (Honours) in ICT with a Minor
+            in Computational Science from{" "}
+            <strong className="text-highlight">
+              Dhirubhai Ambani University
+            </strong>
+            . Whether the problem is consensus under network partitions,
+            inference latency on a single GPU, or an accessibility audit before
+            a production launch, I care about the same thing: measurable results
+            in shipped software.
           </p>
         </div>
 
         <div className="about-stats-column" ref={statsRef}>
           <div className="bento-stats-grid">
-            <div className="stat-bento-card glass">
-              <span
-                className="stat-number"
-                data-target="8.1"
-                data-decimals="1"
-              >
-                0.0
-              </span>
-              <span className="stat-label">ACADEMIC CPI / 10</span>
-            </div>
-            <div className="stat-bento-card glass">
-              <span className="stat-number" data-target="4" data-suffix="+">
-                0
-              </span>
-              <span className="stat-label">CORE PROJECTS</span>
-            </div>
-            <div className="stat-bento-card glass">
-              <span className="stat-number" data-target="2">
-                0
-              </span>
-              <span className="stat-label">RESEARCH INITIATIVES</span>
-            </div>
-            <div className="stat-bento-card glass">
-              <span className="stat-number" data-target="25" data-suffix="K+">
-                0
-              </span>
-              <span className="stat-label">EVENT ATTENDEES MANAGED</span>
-            </div>
+            {STATS.map((stat) => (
+              <div className="stat-bento-card glass" key={stat.label}>
+                <span
+                  className="stat-number"
+                  data-target={stat.target}
+                  data-suffix={stat.suffix}
+                  data-decimals={stat.decimals}
+                >
+                  {stat.target.toFixed(stat.decimals)}
+                  {stat.suffix}
+                </span>
+                <span className="stat-label">{stat.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
