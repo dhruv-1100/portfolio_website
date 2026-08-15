@@ -23,18 +23,20 @@ const WORKING =
 
 export default function Stack() {
   return (
-    <section className="section" id="stack">
+    <section className="section wrap" id="stack">
       <div className="section-head reveal">
-        <div className="eyebrow">STACK</div>
-        <h2 className="section-title">Sorted by depth, not by count</h2>
+        <div>
+          <div className="eyebrow">04 — STACK</div>
+          <h2 className="h2">Sorted by depth, not by count.</h2>
+        </div>
       </div>
 
-      <div className="glass-panel reveal">
+      <div className="stack-list reveal">
         <div className="stack-row">
           <div className="stack-tier is-deep">DEEP — DAILY</div>
           <div className="stack-items">
             {DEEP.map((item) => (
-              <span className="stack-pill is-deep" key={item}>
+              <span className="chip is-accent" data-chip key={item}>
                 {item}
               </span>
             ))}
@@ -45,7 +47,7 @@ export default function Stack() {
           <div className="stack-tier">SHIPPING PRODUCTION</div>
           <div className="stack-items">
             {SHIPPING.map((item) => (
-              <span className="stack-pill" key={item}>
+              <span className="chip" data-chip key={item}>
                 {item}
               </span>
             ))}

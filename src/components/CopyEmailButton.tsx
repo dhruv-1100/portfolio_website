@@ -4,11 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { EMAIL } from "@/lib/site";
 
 /**
- * Copies the address to the clipboard and confirms inline. If the clipboard
- * API is blocked the label still confirms, so the button never looks dead —
- * the address is also rendered as a mailto link alongside it.
+ * Copies the address and confirms inline. If the clipboard API is blocked the
+ * label still confirms rather than looking dead — the address is also rendered
+ * as a plain mailto link nearby.
  */
-export default function CopyEmailButton({ label = "copy email" }) {
+export default function CopyEmailButton({
+  className = "btn btn-accent",
+}: {
+  className?: string;
+}) {
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
@@ -28,11 +32,13 @@ export default function CopyEmailButton({ label = "copy email" }) {
   return (
     <button
       type="button"
+      className={className}
       onClick={handleClick}
-      className={`btn-primary${copied ? " is-copied" : ""}`}
+      data-magnetic
+      data-hover
       aria-live="polite"
     >
-      {copied ? "copied ✓" : label}
+      {copied ? "copied ✓" : "copy email"}
     </button>
   );
 }
