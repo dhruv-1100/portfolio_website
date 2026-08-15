@@ -1,25 +1,31 @@
 const STATS = [
-  { count: 45, suffix: "%", display: "45%", label: "faster PIC plasma simulation" },
-  { count: 200, suffix: "+", display: "200+", label: "TPS under 3-replica consensus" },
-  { count: 5, suffix: "", display: "5", label: "models orchestrated on one local GPU" },
-  { count: null, suffix: "", display: "1st", label: "Band of Agents Hackathon 2026" },
+  { count: 45, suffix: "%", display: "45%", label: ["FASTER PIC PLASMA", "SIMULATION"] },
+  { count: 200, suffix: "+", display: "200+", label: ["TPS UNDER 3-REPLICA", "CONSENSUS"] },
+  { count: 5, suffix: "", display: "5", label: ["MODELS ORCHESTRATED", "ON ONE LOCAL GPU"] },
+  { count: null, suffix: "", display: "1st", label: ["BAND OF AGENTS", "HACKATHON 2026"], accent: true },
 ];
 
 export default function Stats() {
   return (
-    <section className="stats reveal" aria-label="Key results">
-      {STATS.map((stat) => (
-        <div className="glass-card stat-card tilt" data-tilt key={stat.label}>
-          <div
-            className="stat-value"
-            data-count={stat.count ?? undefined}
-            data-suffix={stat.suffix}
-          >
-            {stat.display}
+    <section className="wrap reveal" aria-label="Key results">
+      <div className="stats">
+        {STATS.map((stat) => (
+          <div className="stat" data-statcell key={stat.label.join(" ")}>
+            <div
+              className={`stat-value${stat.accent ? " is-accent" : ""}`}
+              data-count={stat.count ?? undefined}
+              data-suffix={stat.suffix}
+            >
+              {stat.display}
+            </div>
+            <div className="stat-label">
+              {stat.label[0]}
+              <br />
+              {stat.label[1]}
+            </div>
           </div>
-          <div className="stat-label">{stat.label}</div>
-        </div>
-      ))}
+        ))}
+      </div>
     </section>
   );
 }

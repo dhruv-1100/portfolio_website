@@ -4,7 +4,7 @@ const EARLIER = [
     title: "Canteen Automation System",
     description:
       "Led an agile team building a mobile-first canteen ordering and inventory platform for campus dining.",
-    result: "+30% ordering efficiency",
+    result: "+30% ORDERING EFFICIENCY",
     stack: "Flutter · Agile · Team lead",
   },
   {
@@ -12,7 +12,7 @@ const EARLIER = [
     title: "Local File Sharing System",
     description:
       "Peer-to-peer transfer over IPC and low-level sockets, engineered for zero-loss delivery on a local network.",
-    result: "Optimized P2P throughput",
+    result: "OPTIMIZED P2P THROUGHPUT",
     stack: "C++ · IPC · Sockets",
   },
   {
@@ -20,7 +20,7 @@ const EARLIER = [
     title: "MagNet — Adversarial Defense",
     description:
       "A two-pronged detector and reformer defense against adversarial attacks on deep image classifiers.",
-    result: "High detection rate on noise",
+    result: "HIGH DETECTION RATE ON NOISE",
     stack: "PyTorch · Computer vision",
   },
   {
@@ -28,24 +28,23 @@ const EARLIER = [
     title: "Vaccine Record Management",
     description:
       "Custom C++ data structures and persistent file handling for high-speed record lookup and integrity checks.",
-    result: "Constant-time lookup",
+    result: "CONSTANT-TIME LOOKUP",
     stack: "C++ · File I/O · Memory",
   },
 ];
 
 export default function EarlierWork() {
   return (
-    <section className="section" aria-label="Earlier work">
+    <div className="wrap" aria-label="Earlier work">
       <div className="earlier-head reveal">
-        <div className="eyebrow" style={{ marginBottom: 0 }}>
-          EARLIER WORK
-        </div>
-        <div className="earlier-note">undergraduate · 2021—2024</div>
+        <div>EARLIER WORK</div>
+        <div>UNDERGRADUATE · 2021—2024</div>
       </div>
 
       <div className="earlier-grid reveal">
         {EARLIER.map((item) => (
-          <div className="earlier-card tilt" data-tilt key={item.title}>
+          <div className="glass earlier-card" data-glass data-tilt key={item.title}>
+            <div className="sheen" data-sheen aria-hidden="true" />
             <div className="earlier-kicker">{item.kicker}</div>
             <div className="earlier-title">{item.title}</div>
             <div className="earlier-desc">{item.description}</div>
@@ -54,6 +53,6 @@ export default function EarlierWork() {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

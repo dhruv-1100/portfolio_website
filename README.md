@@ -22,8 +22,8 @@ npm run build    # static export to ./out
 | `src/app/globals.css` | Design tokens and every component style |
 | `src/lib/site.ts` | Name, contact details, links, deploy-dependent paths |
 | `src/components/` | One component per section |
-| `src/components/Interactions.tsx` | Header state, pointer bloom, row hover, tilt, reveal, count-up |
-| `src/components/Work.tsx` | Filterable project table (client component) |
+| `src/components/Interactions.tsx` | Headline, reveal, count-up, progress, scroll spy, cursor, magnetic, scramble, sheen, tilt, marquee |
+| `src/components/Work.tsx` | Single-open project accordion (client component) |
 | `src/app/og-image.png/route.tsx` | 1200×630 social card, generated at build time |
 | `public/DhruvPatel_Resume.pdf` | Resume served by the `resume.pdf` links |
 
@@ -34,19 +34,23 @@ Contact details, links and the availability badge all come from
 
 - **Resume:** replace `public/DhruvPatel_Resume.pdf` and mirror any changes
   into the relevant section components so the site and PDF stay in sync.
-- **Projects:** edit the `PROJECTS` array in `src/components/Work.tsx`. Each
-  entry carries a `category` (`systems` / `agents` / `ml`) that drives the
-  filter pills and their counts; omit `source` and no link is rendered.
+- **Projects:** edit the `PROJECTS` array in `src/components/Work.tsx`. Omit
+  `source` and no link is rendered; `media` is the placeholder caption for the
+  panel that will hold a diagram or screenshot.
 - **Earlier work:** edit the `EARLIER` array in `src/components/EarlierWork.tsx`.
 - **Stack:** edit the `DEEP`, `SHIPPING` and `WORKING` lists in
   `src/components/Stack.tsx`.
 
 ## Design
 
-The layout comes from `Portfolio - Index.dc.html`, exported from Claude Design.
-Palette is `#0b0d10` base with a `#6fa8ff` blue and `#78ffde` mint accent, set
-in IBM Plex Sans and IBM Plex Mono, over glassmorphism panels and a fixed
-ambient gradient layer.
+The layout comes from `Portfolio - Index v2.dc.html`, exported from Claude
+Design. Bricolage Grotesque for display, Instrument Sans for body, JetBrains
+Mono for labels, on an `#08090b` base.
+
+The design exposes its accent as a theme prop; here it is the `--accent` /
+`--accent-rgb` pair at the top of `globals.css`. Re-theme the whole page by
+changing both together — the design's own options are `#6fa8ff` (current),
+`#ccff33`, `#ff5c38` and `#78ffde`.
 
 ## Deployment
 

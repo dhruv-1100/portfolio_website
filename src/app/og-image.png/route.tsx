@@ -12,9 +12,9 @@ const size = { width: 1200, height: 630 };
  */
 export function GET() {
   const accent = "#6fa8ff";
-  const mint = "#78ffde";
-  const ink = "#eef1f5";
-  const muted = "#8f959f";
+  const bg = "#08090b";
+  const ink = "#f4f5f3";
+  const dim = "#8b8f98";
 
   return new ImageResponse(
     (
@@ -25,8 +25,8 @@ export function GET() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "72px 80px",
-          background: "#0b0d10",
+          padding: "76px 80px",
+          background: bg,
           color: ink,
           position: "relative",
         }}
@@ -34,25 +34,24 @@ export function GET() {
         <div
           style={{
             position: "absolute",
-            top: -240,
-            left: -140,
-            width: 720,
-            height: 720,
-            borderRadius: 360,
+            top: -300,
+            left: 200,
+            width: 900,
+            height: 700,
             background:
-              "radial-gradient(circle, rgba(111,168,255,0.18) 0%, rgba(111,168,255,0) 68%)",
+              "radial-gradient(ellipse at center, rgba(111,168,255,0.14) 0%, rgba(111,168,255,0) 62%)",
           }}
         />
         <div
           style={{
             position: "absolute",
-            bottom: -280,
-            right: -180,
+            bottom: -340,
+            left: -180,
             width: 760,
             height: 760,
             borderRadius: 380,
             background:
-              "radial-gradient(circle, rgba(120,255,222,0.11) 0%, rgba(120,255,222,0) 66%)",
+              "radial-gradient(circle, rgba(110,130,255,0.12) 0%, rgba(110,130,255,0) 64%)",
           }}
         />
 
@@ -60,69 +59,42 @@ export function GET() {
           style={{
             display: "flex",
             alignItems: "center",
-            alignSelf: "flex-start",
             gap: 12,
-            marginBottom: 36,
-            padding: "10px 22px",
-            borderRadius: 9999,
-            border: "1px solid rgba(120,255,222,0.24)",
-            background: "rgba(120,255,222,0.08)",
-            color: mint,
-            fontSize: 20,
-            letterSpacing: 1.6,
+            marginBottom: 34,
+            color: accent,
+            fontSize: 19,
+            letterSpacing: 3,
           }}
         >
           <div
-            style={{ width: 10, height: 10, borderRadius: 5, background: mint }}
+            style={{ width: 9, height: 9, borderRadius: 5, background: accent }}
           />
           {AVAILABILITY}
         </div>
 
         <div
           style={{
-            fontSize: 62,
-            fontWeight: 500,
-            letterSpacing: -1.6,
-            lineHeight: 1.15,
-            maxWidth: 960,
-            marginBottom: 28,
+            display: "flex",
+            flexDirection: "column",
+            fontSize: 78,
+            fontWeight: 700,
+            letterSpacing: -3.4,
+            lineHeight: 1.02,
+            marginBottom: 34,
           }}
         >
-          Dhruv Patel — software engineer working on distributed systems and ML
-          infrastructure.
+          <span>I build software</span>
+          <span>
+            <span style={{ color: dim }}>systems that</span> hold up
+          </span>
+          <span style={{ color: dim }}>in production.</span>
         </div>
 
-        <div
-          style={{
-            width: 96,
-            height: 3,
-            borderRadius: 2,
-            background: accent,
-            marginBottom: 32,
-          }}
-        />
-
-        <div style={{ display: "flex", gap: 14 }}>
-          {[
-            "MS CS @ Stony Brook",
-            "SWE @ Aaron Technologies",
-            "APS GEC 2025",
-          ].map((chip) => (
-            <div
-              key={chip}
-              style={{
-                display: "flex",
-                padding: "12px 24px",
-                borderRadius: 8,
-                border: "1px solid rgba(255,255,255,0.1)",
-                background: "rgba(255,255,255,0.045)",
-                color: muted,
-                fontSize: 20,
-              }}
-            >
-              {chip}
-            </div>
-          ))}
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <div style={{ width: 64, height: 2, background: accent }} />
+          <div style={{ display: "flex", color: dim, fontSize: 21, letterSpacing: 1.4 }}>
+            DHRUV PATEL · MS CS @ STONY BROOK · SWE @ AARON TECHNOLOGIES
+          </div>
         </div>
       </div>
     ),

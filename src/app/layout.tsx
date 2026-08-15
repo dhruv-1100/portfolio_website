@@ -1,19 +1,30 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Instrument_Sans,
+  JetBrains_Mono,
+} from "next/font/google";
 import "./globals.css";
 import { EMAIL, GITHUB, LINKEDIN, NAME, SITE_URL } from "@/lib/site";
 
-const plexSans = IBM_Plex_Sans({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex-sans",
+  weight: ["400", "500", "700", "800"],
+  variable: "--font-bricolage",
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
+const instrument = Instrument_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-plex-mono",
+  variable: "--font-instrument",
+  display: "swap",
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
   display: "swap",
 });
 
@@ -57,10 +68,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: ["/og-image.png"],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 const personJsonLd = {
@@ -100,12 +108,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html
+      lang="en"
+      className={`${bricolage.variable} ${instrument.variable} ${jetbrains.variable}`}
+    >
       <head>
-        {/* Scroll-reveal is progressive enhancement: without JS the content
-            must not stay stuck at opacity 0. */}
+        {/* Reveal and the masked headline are progressive enhancement: without
+            JS neither may leave content hidden. */}
         <noscript>
-          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+          <style>{`.reveal{opacity:1!important;transform:none!important}.hero-line{transform:none!important}`}</style>
         </noscript>
       </head>
       <body>

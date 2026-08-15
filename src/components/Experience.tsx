@@ -16,7 +16,7 @@ const ROLES: Role[] = [
       </>
     ),
     title: "Software Engineer · Aaron Technologies Inc.",
-    org: "Sole engineer, B2B industrial sourcing platform — remote",
+    org: "SOLE ENGINEER, B2B INDUSTRIAL SOURCING PLATFORM — REMOTE",
     bullets: [
       <>
         Architected a serverless backend on Firestore, Resend and HubSpot CRM
@@ -44,7 +44,7 @@ const ROLES: Role[] = [
     ),
     title:
       "Research — Accelerating Particle-in-Cell Simulations with Deep Learning",
-    org: "Dhirubhai Ambani University · presented at APS GEC 2025",
+    org: "DHIRUBHAI AMBANI UNIVERSITY · PRESENTED AT APS GEC 2025",
     bullets: [
       <>
         Replaced the charge-deposition, Poisson-solver and electric-field stages
@@ -67,7 +67,7 @@ const ROLES: Role[] = [
       </>
     ),
     title: "Summer Research Intern — Software Testing & Test Case Prioritization",
-    org: "Dhirubhai Ambani University, Gandhinagar, India",
+    org: "DHIRUBHAI AMBANI UNIVERSITY, GANDHINAGAR, INDIA",
     bullets: [
       <>
         Benchmarked four test-case prioritization techniques across{" "}
@@ -86,16 +86,18 @@ const ROLES: Role[] = [
 
 export default function Experience() {
   return (
-    <section className="section" id="experience">
+    <section className="section wrap" id="experience">
       <div className="section-head reveal">
-        <div className="eyebrow">EXPERIENCE</div>
-        <h2 className="section-title">Industry and research</h2>
+        <div>
+          <div className="eyebrow">02 — EXPERIENCE</div>
+          <h2 className="h2">Industry and research.</h2>
+        </div>
       </div>
 
-      <div className="glass-panel reveal">
+      <div className="exp-list reveal">
         {ROLES.map((role) => (
-          <div className="row row-exp" data-row key={role.title}>
-            <div className="row-bar" data-bar aria-hidden="true" />
+          <div className="exp-row" data-row key={role.title}>
+            <div className="acc-bar" data-bar aria-hidden="true" />
             <div className="exp-date">{role.date}</div>
             <div>
               <div className="exp-title" data-title>
