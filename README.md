@@ -1,70 +1,39 @@
-# Portfolio — Dhruv Patel
+# Dhruv Patel
 
-Personal portfolio site. Next.js 15 App Router, statically exported and
-deployed to GitHub Pages.
+**Software engineer working on distributed systems and ML infrastructure.**
 
-**Live:** https://dhruv-1100.github.io/portfolio_website
+### → [dhruv-1100.github.io/portfolio_website](https://dhruv-1100.github.io/portfolio_website)
 
-## Development
+---
 
-```bash
-npm install
-npm run dev      # http://localhost:3000
-npm run build    # static export to ./out
-```
+MS Computer Science at Stony Brook University, graduating May 2027. Sole
+engineer on a production B2B industrial sourcing platform at Aaron
+Technologies. I work where correctness is measurable — consensus protocols,
+surrogate models, and inference that has to run on one machine.
 
-## Structure
+**Open to full-time software, ML and systems roles from Spring 2027.**
 
-| Path | Purpose |
+## Selected work
+
+| Project | Result |
 | --- | --- |
-| `src/app/layout.tsx` | Fonts, metadata, Open Graph, `Person` JSON-LD |
-| `src/app/page.tsx` | Section composition and ambient background (server component) |
-| `src/app/globals.css` | Design tokens and every component style |
-| `src/lib/site.ts` | Name, contact details, links, deploy-dependent paths |
-| `src/components/` | One component per section |
-| `src/components/Interactions.tsx` | Headline, reveal, count-up, progress, scroll spy, cursor, magnetic, scramble, sheen, tilt, marquee |
-| `src/components/Work.tsx` | Single-open project accordion (client component) |
-| `src/app/og-image.png/route.tsx` | 1200×630 social card, generated at build time |
-| `public/DhruvPatel_Resume.pdf` | Resume served by the `resume.pdf` links |
+| **[FreightRoom](https://github.com/rohan879/freight-room)** — winner, Band of Agents Hackathon 2026 | 7 agents across 3 frameworks, coordinated with auditable quorum voting |
+| **Raft Consensus & Multi-Paxos Sequencer** | 200+ TPS under 3-replica consensus |
+| **[Argus](https://github.com/dhruv-1100/Cuda-Woulda-Shoulda)** — local AI compliance platform | 5 models orchestrated on one local GPU |
+| **[ConsensusPrompt](https://github.com/dhruv-1100/PromptConsensus)** | 4.77/5 mean trust across a 13-user study |
+| **[OnboardOps](https://github.com/rohan879/OnboardOps)** | Automated repository comprehension via a custom MCP server |
 
-Contact details, links and the availability badge all come from
-`src/lib/site.ts` — change them there, not in individual components.
+Research on accelerating Particle-in-Cell plasma simulations with a U-Net
+surrogate — 45% faster, under 5% mean percentage error — was presented at
+**APS GEC 2025**.
 
-## Content updates
+## Contact
 
-- **Resume:** replace `public/DhruvPatel_Resume.pdf` and mirror any changes
-  into the relevant section components so the site and PDF stay in sync.
-- **Projects:** edit the `PROJECTS` array in `src/components/Work.tsx`. Omit
-  `source` and no link is rendered; `media` is the placeholder caption for the
-  panel that will hold a diagram or screenshot.
-- **Earlier work:** edit the `EARLIER` array in `src/components/EarlierWork.tsx`.
-- **Stack:** edit the `DEEP`, `SHIPPING` and `WORKING` lists in
-  `src/components/Stack.tsx`.
+- **Email:** [dhruv.012p@gmail.com](mailto:dhruv.012p@gmail.com)
+- **LinkedIn:** [dhruv-patel-263523213](https://www.linkedin.com/in/dhruv-patel-263523213/)
+- **GitHub:** [@dhruv-1100](https://github.com/dhruv-1100)
+- **Resume:** [DhruvPatel_Resume.pdf](public/DhruvPatel_Resume.pdf)
 
-## Design
+---
 
-The layout comes from `Portfolio - Index v2.dc.html`, exported from Claude
-Design. Bricolage Grotesque for display, Instrument Sans for body, JetBrains
-Mono for labels, on an `#08090b` base.
-
-The design exposes its accent as a theme prop; here it is the `--accent` /
-`--accent-rgb` pair at the top of `globals.css`. Re-theme the whole page by
-changing both together — the design's own options are `#6fa8ff` (current),
-`#ccff33`, `#ff5c38` and `#78ffde`.
-
-## Deployment
-
-`.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every
-push to `main`.
-
-Because this is a Pages *project* site served from `/portfolio_website/`, the
-build sets `NEXT_PUBLIC_BASE_PATH`; without it the exported `_next/*` asset
-URLs 404. If a custom domain is added later, clear `NEXT_PUBLIC_BASE_PATH` and
-point `NEXT_PUBLIC_SITE_URL` at the new domain.
-
-## Accessibility & motion
-
-The site ships a skip link, visible focus rings, and labelled navigation and
-filter controls. All animation — scroll reveals, card tilt, the pointer bloom,
-and the stat count-up — is disabled under `prefers-reduced-motion: reduce`, and
-a `<noscript>` fallback guarantees content is visible with JavaScript disabled.
+<sub>Built with Next.js and statically exported to GitHub Pages. Run locally with `npm install && npm run dev`.</sub>
