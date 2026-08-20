@@ -56,8 +56,13 @@ const PROJECTS: Project[] = [
     description:
       "Implemented Raft consensus — leader election, replicated logs, fault-tolerant recovery — for a distributed key-value system, validated under simulated node failures and network partitions. Extended it with a deterministic-ordering transaction engine using a global sequencer and Multi-Paxos to guarantee strictly serializable execution.",
     result: "200+ TPS / 3 REPLICAS",
-    note: "390+ TPS SINGLE-REPLICA BASELINE",
-    media: ["THROUGHPUT CHART", "OR PARTITION TIMELINE"],
+    note: "390+ TPS SINGLE-REPLICA BASELINE · TPC-C ON MAKO",
+    source: "https://github.com/dhruv-1100/mako-pr",
+    image: {
+      src: "/images/mako-calvin.jpg",
+      alt: "Architecture: a client transaction enters partition 0, where a deterministic scheduler submits a slot to the Multi-Paxos coordinator, replicates to two Paxos replicas, executes against Masstree, and broadcast-dispatches to a worker partition.",
+    },
+    media: ["ARCHITECTURE DIAGRAM", "OR DISPATCH FLOW"],
   },
   {
     num: "04",
