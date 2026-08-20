@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { BASE_PATH } from "@/lib/site";
 
 type Project = {
   num: string;
@@ -11,12 +12,29 @@ type Project = {
   result: string;
   note: string;
   source?: string;
+  /** Screenshot or diagram for the panel; falls back to `media` caption. */
+  image?: { src: string; alt: string };
   media: [string, string];
 };
 
 const PROJECTS: Project[] = [
   {
     num: "01",
+    title: "Aaron Technologies",
+    category: "PRODUCTION B2B PLATFORM",
+    description:
+      "Sole engineer on a production B2B industrial sourcing platform, from June 2026. Architected a serverless backend on Firestore, Resend and HubSpot CRM through Next.js API routes — persistence, transactional email and CRM lead sync. Built an interactive landed-cost calculator modeling freight, duty and handling across 15+ responsive pages, then remediated site-wide accessibility, security, SEO and performance before launch.",
+    result: "SOLE ENGINEER · JUN 2026—PRESENT",
+    note: "NEXT.JS · TYPESCRIPT · FIRESTORE · HUBSPOT · WCAG 2.1 AA",
+    source: "https://github.com/dhruv-1100/AaronTech-web",
+    image: {
+      src: "/images/aaron-technologies.jpg",
+      alt: "The Aaron Technologies homepage: an industrial sourcing site headlined \"Your BOM, one partner, 30+ factories\".",
+    },
+    media: ["PRODUCTION SITE", "SCREENSHOT"],
+  },
+  {
+    num: "02",
     title: "FreightRoom",
     award: "★ WINNER 2026",
     category: "MULTI-AGENT SYSTEMS",
@@ -25,10 +43,14 @@ const PROJECTS: Project[] = [
     result: "7 AGENTS / 3 FRAMEWORKS",
     note: "LANGGRAPH · PYDANTICAI · CREWAI · BAND",
     source: "https://github.com/rohan879/freight-room",
+    image: {
+      src: "/images/freightroom.jpg",
+      alt: "The FreightRoom incident console: a five-phase stepper from detection to approval gate, a live AIS status pill, and an accruing demurrage cost card.",
+    },
     media: ["AGENT TOPOLOGY", "DIAGRAM OR UI CAPTURE"],
   },
   {
-    num: "02",
+    num: "03",
     title: "Raft Consensus & Multi-Paxos Sequencer",
     category: "DISTRIBUTED SYSTEMS",
     description:
@@ -38,7 +60,7 @@ const PROJECTS: Project[] = [
     media: ["THROUGHPUT CHART", "OR PARTITION TIMELINE"],
   },
   {
-    num: "03",
+    num: "04",
     title: "Argus — Local AI Compliance Platform",
     category: "ON-DEVICE MULTIMODAL AI",
     description:
@@ -46,10 +68,14 @@ const PROJECTS: Project[] = [
     result: "5 MODELS, ONE LOCAL GPU",
     note: "7 LIVE NYC OPEN DATA SETS",
     source: "https://github.com/dhruv-1100/Cuda-Woulda-Shoulda",
+    image: {
+      src: "/images/argus.jpg",
+      alt: "A New York City sidewalk excavation — a source video frame of the kind Argus grounds against OSHA and DOB rules.",
+    },
     media: ["DETECTION OVERLAY", "SCREENSHOT"],
   },
   {
-    num: "04",
+    num: "05",
     title: "ConsensusPrompt",
     category: "MULTI-AGENT SYSTEMS",
     description:
@@ -57,10 +83,14 @@ const PROJECTS: Project[] = [
     result: "4.77/5 MEAN TRUST, 0% OVERRIDE",
     note: "+25.5% CONSENSUS STRENGTH",
     source: "https://github.com/dhruv-1100/PromptConsensus",
+    image: {
+      src: "/images/consensusprompt.jpg",
+      alt: "Ablation chart: consensus strength rising from 63% with three rewriter models to 79% with five.",
+    },
     media: ["REVIEW LOOP DIAGRAM", "OR STUDY RESULTS"],
   },
   {
-    num: "05",
+    num: "06",
     title: "OnboardOps",
     category: "DEVELOPER TOOLING",
     description:
@@ -68,6 +98,10 @@ const PROJECTS: Project[] = [
     result: "AUTOMATED REPO COMPREHENSION",
     note: "FASTAPI · MCP · GITPYTHON",
     source: "https://github.com/rohan879/OnboardOps",
+    image: {
+      src: "/images/onboardops.jpg",
+      alt: "OnboardOps architecture: a FastAPI backend exposing seven Git analysis tools over MCP, bridged to a Next.js dashboard by WebSocket events.",
+    },
     media: ["DEPENDENCY GRAPH", "SCREENSHOT"],
   },
 ];
@@ -78,7 +112,7 @@ export default function Work() {
 
   /**
    * Heights animate from an explicit pixel value, then settle to `auto` so a
-   * late font reflow can never clip an open panel.
+   * late font or image reflow can never clip an open panel.
    */
   const layout = useCallback(
     (animate: boolean) => {
@@ -132,7 +166,7 @@ export default function Work() {
       <div className="section-head reveal">
         <div>
           <div className="eyebrow">01 — SELECTED WORK</div>
-          <h2 className="h2">Five systems, five measurable results.</h2>
+          <h2 className="h2">Six systems, six measurable results.</h2>
         </div>
         <div className="section-hint">click a row to expand ↓</div>
       </div>
@@ -199,13 +233,29 @@ export default function Work() {
                       )}
                     </div>
                   </div>
-                  <div className="acc-media" data-glass aria-hidden="true">
-                    <span>
-                      {project.media[0]}
-                      <br />
-                      {project.media[1]}
-                    </span>
-                  </div>
+
+                  {project.image ? (
+                    <div className="acc-media has-image" data-glass>
+                      {/* Plain <img>: next/image is disabled under output: export. */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`${BASE_PATH}${project.image.src}`}
+                        alt={project.image.alt}
+                        loading="lazy"
+                        decoding="async"
+                        width={900}
+                        height={560}
+                      />
+                    </div>
+                  ) : (
+                    <div className="acc-media" data-glass aria-hidden="true">
+                      <span>
+                        {project.media[0]}
+                        <br />
+                        {project.media[1]}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </article>

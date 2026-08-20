@@ -7,34 +7,11 @@ type Role = {
   bullets: ReactNode[];
 };
 
+/**
+ * Aaron Technologies lives in Work rather than here — it is the one role with
+ * a shippable artefact, so it reads better as a project card.
+ */
 const ROLES: Role[] = [
-  {
-    date: (
-      <>
-        JUN 2026 —<br />
-        PRESENT
-      </>
-    ),
-    title: "Software Engineer · Aaron Technologies Inc.",
-    org: "SOLE ENGINEER, B2B INDUSTRIAL SOURCING PLATFORM — REMOTE",
-    bullets: [
-      <>
-        Architected a serverless backend on Firestore, Resend and HubSpot CRM
-        through Next.js API routes — persistence, transactional email and CRM
-        lead sync in production.
-      </>,
-      <>
-        Built an interactive landed-cost calculator modeling freight, duty and
-        handling, plus <strong>15+ responsive pages</strong> across product,
-        catalog, industry and RFQ experiences.
-      </>,
-      <>
-        Remediated site-wide accessibility <strong>(WCAG 2.1 AA)</strong>,
-        security, SEO and performance, including JSON-LD structured data and
-        deployment hardening.
-      </>,
-    ],
-  },
   {
     date: (
       <>
@@ -90,7 +67,7 @@ export default function Experience() {
       <div className="section-head reveal">
         <div>
           <div className="eyebrow">02 — EXPERIENCE</div>
-          <h2 className="h2">Industry and research.</h2>
+          <h2 className="h2">Research appointments.</h2>
         </div>
       </div>
 
