@@ -58,6 +58,10 @@ const PROJECTS: Project[] = [
     result: "200+ TPS / 3 REPLICAS",
     note: "390+ TPS SINGLE-REPLICA BASELINE · TPC-C ON MAKO",
     source: "https://github.com/dhruv-1100/mako-pr",
+    image: {
+      src: "/images/mako-calvin.jpg",
+      alt: "Architecture: a client transaction enters partition 0, where a deterministic scheduler submits a slot to the Multi-Paxos coordinator, replicates to two Paxos replicas, executes against Masstree, and broadcast-dispatches to a worker partition.",
+    },
     media: ["ARCHITECTURE DIAGRAM", "OR DISPATCH FLOW"],
   },
   {
