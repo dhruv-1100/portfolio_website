@@ -744,6 +744,27 @@ button:focus-visible {
   line-height: 1.9;
 }
 
+/* Screenshot or diagram in place of the placeholder caption. */
+.acc-media.has-image {
+  display: block;
+  background-image: none;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.acc-media.has-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  object-fit: cover;
+  object-position: top left;
+  opacity: 0.88;
+  transition: opacity 0.4s ease, transform 0.7s var(--ease);
+}
+
+.acc.is-open .acc-media.has-image img { opacity: 1; }
+.acc:hover .acc-media.has-image img { transform: scale(1.015); }
+
 /* ---------- Earlier work ---------- */
 .earlier-head {
   display: flex;
@@ -1130,6 +1151,7 @@ button:focus-visible {
   .hero-line { transform: none !important; }
 
   .marquee { animation: none !important; }
+  .acc-media.has-image img { transform: none !important; }
   .ambient-spot,
   .cursor-dot,
   .cursor-ring { display: none !important; }
