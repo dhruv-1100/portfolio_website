@@ -8,8 +8,8 @@ type Role = {
 };
 
 /**
- * Aaron Technologies lives in Work rather than here — it is the one role with
- * a shippable artefact, so it reads better as a project card.
+ * Matches the resume's "Research Experience" section. Aaron Technologies is a
+ * project, not a role, so it lives in Work.
  */
 const ROLES: Role[] = [
   {
@@ -20,19 +20,20 @@ const ROLES: Role[] = [
       </>
     ),
     title:
-      "Research — Accelerating Particle-in-Cell Simulations with Deep Learning",
+      "Integrating DL with 2D-3V Particle-in-Cell Simulations of Low Temperature Plasmas",
     org: "DHIRUBHAI AMBANI UNIVERSITY · PRESENTED AT APS GEC 2025",
     bullets: [
       <>
         Replaced the charge-deposition, Poisson-solver and electric-field stages
-        — the dominant parallel bottleneck — with a U-Net surrogate, cutting
-        execution time{" "}
-        <strong>45% on 128×128 grids with 2.6e5 particles</strong>.
+        with a U-Net surrogate model, achieving a{" "}
+        <strong>45% execution-time reduction on 128×128 grids</strong> with
+        2.6e5 particles.
       </>,
       <>
         Enforced physical fidelity with Physics-Informed Neural Networks,
-        holding <strong>mean percentage error under 5%</strong> against baseline
-        PIC-MCC across 500-iteration E×B test cases.
+        maintaining <strong>mean percentage error under 5%</strong> against
+        baseline PIC-MCC across 500-iteration E×B test cases; implemented in
+        Python with C extensions on Unix/Linux.
       </>,
     ],
   },
@@ -67,7 +68,7 @@ export default function Experience() {
       <div className="section-head reveal">
         <div>
           <div className="eyebrow">02 — EXPERIENCE</div>
-          <h2 className="h2">Research appointments.</h2>
+          <h2 className="h2">Research experience.</h2>
         </div>
       </div>
 

@@ -6,10 +6,10 @@
 
 ---
 
-MS Computer Science at Stony Brook University, graduating May 2027. Sole
-engineer on a production B2B industrial sourcing platform at Aaron
-Technologies. I work where correctness is measurable — consensus protocols,
-surrogate models, and inference that has to run on one machine.
+MS Computer Science at Stony Brook University, graduating May 2027. I work
+where correctness is measurable — consensus protocols, surrogate models, and
+inference that has to run on one machine, alongside production web platforms
+that ship.
 
 **Open to full-time software, ML and systems roles from Spring 2027.**
 
@@ -17,8 +17,9 @@ surrogate models, and inference that has to run on one machine.
 
 | Project | Result |
 | --- | --- |
+| **[Aaron Technologies](https://github.com/dhruv-1100/AaronTech-web)** — B2B industrial sourcing platform | 15+ responsive pages, shipped to WCAG 2.1 AA |
 | **[FreightRoom](https://github.com/rohan879/freight-room)** — winner, Band of Agents Hackathon 2026 | 7 agents across 3 frameworks, coordinated with auditable quorum voting |
-| **Raft Consensus & Multi-Paxos Sequencer** | 200+ TPS under 3-replica consensus |
+| **[Raft Consensus & Multi-Paxos Sequencer](https://github.com/dhruv-1100/mako-pr)** | 200+ TPS under 3-replica consensus, TPC-C on MAKO |
 | **[Argus](https://github.com/dhruv-1100/Cuda-Woulda-Shoulda)** — local AI compliance platform | 5 models orchestrated on one local GPU |
 | **[ConsensusPrompt](https://github.com/dhruv-1100/PromptConsensus)** | 4.77/5 mean trust across a 13-user study |
 | **[OnboardOps](https://github.com/rohan879/OnboardOps)** | Automated repository comprehension via a custom MCP server |

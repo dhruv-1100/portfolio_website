@@ -21,11 +21,11 @@ const PROJECTS: Project[] = [
   {
     num: "01",
     title: "Aaron Technologies",
-    category: "PRODUCTION B2B PLATFORM",
+    category: "B2B INDUSTRIAL SOURCING",
     description:
-      "Sole engineer on a production B2B industrial sourcing platform, from June 2026. Architected a serverless backend on Firestore, Resend and HubSpot CRM through Next.js API routes — persistence, transactional email and CRM lead sync. Built an interactive landed-cost calculator modeling freight, duty and handling across 15+ responsive pages, then remediated site-wide accessibility, security, SEO and performance before launch.",
-    result: "SOLE ENGINEER · JUN 2026—PRESENT",
-    note: "NEXT.JS · TYPESCRIPT · FIRESTORE · HUBSPOT · WCAG 2.1 AA",
+      "Built production features for a B2B industrial sourcing platform, architecting a serverless backend on Firestore, Resend and HubSpot CRM for data persistence, transactional email and automated lead synchronization. Developed an interactive landed-cost calculator modeling freight, duty and handling, alongside 15+ responsive pages spanning product, catalog, industry and RFQ workflows. Improved production readiness through site-wide WCAG 2.1 AA accessibility, security, SEO and performance work, including JSON-LD structured data and deployment hardening.",
+    result: "15+ RESPONSIVE PAGES · WCAG 2.1 AA",
+    note: "NEXT.JS · REACT · TYPESCRIPT · FIRESTORE · RESEND · HUBSPOT",
     source: "https://github.com/dhruv-1100/AaronTech-web",
     image: {
       src: "/images/aaron-technologies.jpg",
@@ -56,7 +56,7 @@ const PROJECTS: Project[] = [
     description:
       "Implemented Raft consensus — leader election, replicated logs, fault-tolerant recovery — for a distributed key-value system, validated under simulated node failures and network partitions. Extended it with a deterministic-ordering transaction engine using a global sequencer and Multi-Paxos to guarantee strictly serializable execution.",
     result: "200+ TPS / 3 REPLICAS",
-    note: "390+ TPS SINGLE-REPLICA BASELINE · TPC-C ON MAKO",
+    note: "390+ TPS SINGLE-REPLICA · TPC-C ON MAKO · MASSTREE",
     source: "https://github.com/dhruv-1100/mako-pr",
     image: {
       src: "/images/mako-calvin.jpg",
