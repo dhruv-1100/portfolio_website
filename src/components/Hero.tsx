@@ -2,9 +2,9 @@ import CopyEmailButton from "./CopyEmailButton";
 import { AVAILABILITY, GITHUB, LOCATION } from "@/lib/site";
 
 const STATE_ROWS = [
-  { key: "role", value: "SWE @ Aaron Technologies" },
   { key: "degree", value: "MS CS, Stony Brook" },
   { key: "gpa", value: "3.61 / 4.00" },
+  { key: "graduating", value: "May 2027" },
   { key: "published", value: "APS GEC 2025", accent: true },
 ];
 
@@ -40,10 +40,9 @@ export default function Hero() {
         <div className="reveal">
           <p className="hero-lede">
             Software engineer and MS Computer Science candidate at Stony Brook,
-            graduating May 2027. Sole engineer on a production B2B industrial
-            sourcing platform. I work where correctness is measurable —
+            graduating May 2027. I work where correctness is measurable —
             consensus protocols, surrogate models, and inference that has to run
-            on one machine.
+            on one machine, alongside production web platforms that ship.
           </p>
           <div className="hero-actions">
             <CopyEmailButton />

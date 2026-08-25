@@ -93,7 +93,7 @@ export function GET() {
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <div style={{ width: 64, height: 2, background: accent }} />
           <div style={{ display: "flex", color: dim, fontSize: 21, letterSpacing: 1.4 }}>
-            DHRUV PATEL · MS CS @ STONY BROOK · SWE @ AARON TECHNOLOGIES
+            DHRUV PATEL · MS CS @ STONY BROOK · APS GEC 2025
           </div>
         </div>
       </div>

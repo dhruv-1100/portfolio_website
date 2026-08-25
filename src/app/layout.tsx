@@ -80,9 +80,9 @@ const personJsonLd = {
   jobTitle: "Software Engineer",
   description: DESCRIPTION,
   sameAs: [GITHUB, LINKEDIN],
-  worksFor: {
-    "@type": "Organization",
-    name: "Aaron Technologies Inc.",
+  affiliation: {
+    "@type": "CollegeOrUniversity",
+    name: "Stony Brook University",
   },
   alumniOf: [
     {
