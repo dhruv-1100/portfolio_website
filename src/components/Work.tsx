@@ -12,6 +12,7 @@ type Project = {
   result: string;
   note: string;
   source?: string;
+  live?: string;
   /** Screenshot or diagram for the panel; falls back to `media` caption. */
   image?: { src: string; alt: string };
   media: [string, string];
@@ -109,6 +110,33 @@ const PROJECTS: Project[] = [
     },
     media: ["DEPENDENCY GRAPH", "SCREENSHOT"],
   },
+  {
+    num: "07",
+    title: "Mise — Video-to-Recipe Extraction Platform",
+    category: "FULL-STACK PLATFORM",
+    description:
+      "A production platform converting cooking videos into typed, scalable recipes — a Next.js BFF speaking gRPC to a Python extraction service, over a Redis job queue with idempotency, exponential-backoff retry, dead-lettering and caching. A dependency-free TypeScript engine applies cooking semantics rather than arithmetic: seasoning grows sublinearly, countable ingredients round to whole units, baking ratios stay exact — verified by property-based tests held at 100% branch coverage in CI. When a creator's description carries no recipe, sampling put that at one in five, the pipeline falls back to reading the video itself. Provisioned in Terraform, deployed to Cloud Run by keyless OIDC federation.",
+    result: "657 TESTS · 100% BRANCH COVERAGE",
+    note: "NEXT.JS · TYPESCRIPT · PYTHON · GRPC · REDIS · POSTGRES · TERRAFORM · GEMINI",
+    live: "https://mise-prod.vercel.app",
+    source: "https://github.com/dhruv-1100/Mise",
+    media: ["COOK MODE", "OR EXTRACTION RUN"],
+  },
+  {
+    num: "08",
+    title: "Airlock",
+    category: "ON-DEVICE DLP",
+    description:
+      "Intercepts the clipboard payload the moment company data is about to leave a laptop for an unapproved cloud AI tool, inspects it locally, blocks it with a cited policy clause, and re-routes the question to a 35B model on the box so the employee still gets an answer. Nothing leaves the machine: every verdict reports bytes_egressed: 0, and the agent runtime is denied egress at the proxy — enforced outside the sandbox, unmodifiable from within it. Measured at a 4.00% false-positive rate over 1,000 benign pastes drawn from six independently-licensed sources, with zero false positives across 480 items of Stack Exchange, Wikipedia, MBPP and HumanEval.",
+    result: "4.00% FPR · 0 BYTES EGRESSED",
+    note: "CHROME MV3 · PYTHON · vLLM · MONGODB · NEMOTRON",
+    source: "https://github.com/dhruv-1100/AirLock",
+    image: {
+      src: "/images/airlock.jpg",
+      alt: "An Airlock verdict: a customer-record paste blocked before leaving the machine, citing policy POL-004, with classifier confidence 0.94, a 312 ms decision, and bytes egressed 0.",
+    },
+    media: ["VERDICT CARD", "SCREENSHOT"],
+  },
 ];
 
 export default function Work() {
@@ -171,7 +199,7 @@ export default function Work() {
       <div className="section-head reveal">
         <div>
           <div className="eyebrow">01 — SELECTED WORK</div>
-          <h2 className="h2">Six systems, six measurable results.</h2>
+          <h2 className="h2">Eight systems, eight measurable results.</h2>
         </div>
         <div className="section-hint">click a row to expand ↓</div>
       </div>
@@ -225,6 +253,17 @@ export default function Work() {
                     <div className="acc-meta">
                       <span className="is-accent">{project.result}</span>
                       <span>{project.note}</span>
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-hover
+                        >
+                          LIVE ↗
+                          <span className="sr-only"> site for {project.title}</span>
+                        </a>
+                      )}
                       {project.source && (
                         <a
                           href={project.source}

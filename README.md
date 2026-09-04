@@ -17,6 +17,8 @@ that ship.
 
 | Project | Result |
 | --- | --- |
+| **[Mise](https://mise-prod.vercel.app)** — video-to-recipe extraction ([source](https://github.com/dhruv-1100/Mise)) | 657 tests at 100% branch coverage |
+| **[Airlock](https://github.com/dhruv-1100/AirLock)** — on-device DLP for clipboard data | 4.00% false-positive rate, 0 bytes egressed |
 | **[Aaron Technologies](https://github.com/dhruv-1100/AaronTech-web)** — B2B industrial sourcing platform | 15+ responsive pages, shipped to WCAG 2.1 AA |
 | **[FreightRoom](https://github.com/rohan879/freight-room)** — winner, Band of Agents Hackathon 2026 | 7 agents across 3 frameworks, coordinated with auditable quorum voting |
 | **[Raft Consensus & Multi-Paxos Sequencer](https://github.com/dhruv-1100/mako-pr)** | 200+ TPS under 3-replica consensus, TPC-C on MAKO |
