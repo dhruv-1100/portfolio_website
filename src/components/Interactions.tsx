@@ -111,9 +111,34 @@ export default function Interactions() {
       }))
       .filter((s): s is { link: HTMLElement; el: HTMLElement } => Boolean(s.el));
 
+    const mobileNav = document.querySelector<HTMLElement>("[data-mobilenav]");
+    let lastY = window.scrollY;
+    let travel = 0;
+
     let ticking = false;
     const update = () => {
       ticking = false;
+
+      // --- Mobile bar: tuck away while scrolling down, return on any scroll up.
+      // Direction changes accumulate before acting so momentum scrolling and
+      // rubber-banding cannot make it flicker.
+      if (mobileNav && !reduce) {
+        const y = window.scrollY;
+        const delta = y - lastY;
+        lastY = y;
+        travel = delta === 0 || Math.sign(delta) !== Math.sign(travel)
+          ? delta
+          : travel + delta;
+
+        const doc = document.documentElement;
+        const atBottom = y + window.innerHeight >= doc.scrollHeight - 90;
+
+        if (y < 140 || travel < -10 || atBottom) {
+          mobileNav.classList.remove("is-tucked");
+        } else if (travel > 26) {
+          mobileNav.classList.add("is-tucked");
+        }
+      }
 
       if (bar) {
         const max = document.documentElement.scrollHeight - window.innerHeight;
