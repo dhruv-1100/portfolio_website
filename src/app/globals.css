@@ -1161,7 +1161,25 @@ button:focus-visible {
   .acc-head { grid-template-columns: 54px 1fr 30px; }
   .acc-cat { display: none; }
   .acc-inner { grid-template-columns: 54px 1fr; }
+
+  /* The captioned placeholder frames are decorative, so they go; real
+     screenshots stay but must span both columns. Without this they wrap into
+     the 54px number column and render as a sliver. */
   .acc-media { display: none; }
+
+  .acc-media.has-image {
+    display: block;
+    grid-column: 1 / -1;
+    min-height: 0;
+    margin-top: 8px;
+  }
+
+  .acc-media.has-image img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    opacity: 1;
+  }
   .nav { display: none; }
 }
 
