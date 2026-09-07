@@ -9,6 +9,7 @@ import Education from "@/components/Education";
 import Stack from "@/components/Stack";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import MobileNav from "@/components/MobileNav";
 import Interactions from "@/components/Interactions";
 
 export default function Home() {
@@ -47,6 +48,8 @@ export default function Home() {
         </main>
         <Footer />
       </div>
+
+      <MobileNav />
     </div>
   );
 }

@@ -1073,6 +1073,62 @@ button:focus-visible {
 .footer-links a { color: var(--text-4); }
 .footer-links a:hover { color: var(--accent); }
 
+/* ---------- Mobile section nav ----------
+   Shown only where the header nav is hidden. Sits above the iOS home
+   indicator and Safari's own toolbar via the safe-area inset. */
+.mobilenav {
+  display: none;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 70;
+  width: calc(100% - 28px);
+  max-width: 460px;
+  padding: 7px;
+  gap: 2px;
+  border-radius: 999px;
+  background: rgba(14, 17, 21, 0.72);
+  backdrop-filter: blur(22px) saturate(170%);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transition: transform 0.4s var(--ease), opacity 0.3s ease;
+}
+
+/* Tucked away while the reader is scrolling down. */
+.mobilenav.is-tucked {
+  transform: translateX(-50%) translateY(calc(100% + 28px));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mobilenav-link {
+  flex: 1;
+  text-align: center;
+  padding: 9px 4px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-4);
+  white-space: nowrap;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.mobilenav-link.is-active {
+  color: var(--bg);
+  background: var(--accent);
+}
+
+.mobilenav-link.is-active:hover { color: var(--bg); }
+
+@media (max-width: 1080px) {
+  .mobilenav { display: flex; }
+  /* Keep the footer clear of the bar. */
+  .footer-inner { padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+}
+
 /* ---------- Reveal ---------- */
 .reveal {
   opacity: 0;
@@ -1152,6 +1208,13 @@ button:focus-visible {
 
   .marquee { animation: none !important; }
   .acc-media.has-image img { transform: none !important; }
+
+  /* Never slide the bar out of reach when motion is reduced. */
+  .mobilenav.is-tucked {
+    transform: translateX(-50%) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
   .ambient-spot,
   .cursor-dot,
   .cursor-ring { display: none !important; }
