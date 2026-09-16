@@ -5,7 +5,7 @@ const STATE_ROWS = [
   { key: "degree", value: "MS CS, Stony Brook" },
   { key: "gpa", value: "3.61 / 4.00" },
   { key: "graduating", value: "May 2027" },
-  { key: "published", value: "APS GEC 2025", accent: true },
+  { key: "submitted", value: "APS GEC 2025", accent: true },
 ];
 
 export default function Hero() {

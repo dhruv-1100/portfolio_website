@@ -27,7 +27,7 @@ that ship.
 | **[OnboardOps](https://github.com/rohan879/OnboardOps)** | Automated repository comprehension via a custom MCP server |
 
 Research on accelerating Particle-in-Cell plasma simulations with a U-Net
-surrogate — 45% faster, under 5% mean percentage error — was presented at
+surrogate — 45% faster, under 5% mean percentage error — was submitted to
 **APS GEC 2025**.
 
 ## Contact
