@@ -21,7 +21,7 @@ const ROLES: Role[] = [
     ),
     title:
       "Integrating DL with 2D-3V Particle-in-Cell Simulations of Low Temperature Plasmas",
-    org: "DHIRUBHAI AMBANI UNIVERSITY · PRESENTED AT APS GEC 2025",
+    org: "DHIRUBHAI AMBANI UNIVERSITY · APS GEC 2025 SUBMISSION",
     bullets: [
       <>
         Replaced the charge-deposition, Poisson-solver and electric-field stages
