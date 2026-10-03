@@ -20,10 +20,10 @@ that ship.
 | **[Chaperone](https://github.com/dhruv-1100/chaperone)** — voice-first shopping agent that keeps older adults inside caregiver-signed rules | 25/25 scams caught on held-out scripts |
 | **[Mise](https://mise-prod.vercel.app)** — video-to-recipe extraction ([source](https://github.com/dhruv-1100/Mise)) | 657 tests at 100% branch coverage |
 | **[Airlock](https://github.com/dhruv-1100/AirLock)** — on-device DLP for clipboard data | 4.00% false-positive rate, 0 bytes egressed |
-| **[Aaron Technologies](https://github.com/dhruv-1100/AaronTech-web)** — B2B industrial sourcing platform | 15+ responsive pages, shipped to WCAG 2.1 AA |
-| **[FreightRoom](https://github.com/rohan879/freight-room)** — winner, Band of Agents Hackathon 2026 | 7 agents across 3 frameworks, coordinated with auditable quorum voting |
 | **[Raft Consensus & Multi-Paxos Sequencer](https://github.com/dhruv-1100/mako-pr)** | 200+ TPS under 3-replica consensus, TPC-C on MAKO |
+| **[FreightRoom](https://github.com/rohan879/freight-room)** — winner, Band of Agents Hackathon 2026 | 7 agents across 3 frameworks, coordinated with auditable quorum voting |
 | **[Argus](https://github.com/dhruv-1100/Cuda-Woulda-Shoulda)** — local AI compliance platform | 5 models orchestrated on one local GPU |
+| **[Aaron Technologies](https://github.com/dhruv-1100/AaronTech-web)** — B2B industrial sourcing platform | 15+ responsive pages, shipped to WCAG 2.1 AA |
 | **[ConsensusPrompt](https://github.com/dhruv-1100/PromptConsensus)** | 4.77/5 mean trust across a 13-user study |
 | **[OnboardOps](https://github.com/rohan879/OnboardOps)** | Automated repository comprehension via a custom MCP server |
 
