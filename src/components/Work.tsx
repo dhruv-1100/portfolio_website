@@ -9,6 +9,8 @@ type Project = {
   award?: string;
   category: string;
   description: string;
+  /** What I personally built, where the project was a team effort. */
+  contribution?: string;
   result: string;
   note: string;
   source?: string;
@@ -21,21 +23,65 @@ type Project = {
 const PROJECTS: Project[] = [
   {
     num: "01",
-    title: "Aaron Technologies",
-    category: "B2B INDUSTRIAL SOURCING",
+    title: "Chaperone — Voice-First Agent for Older Adults",
+    category: "AGENTIC PAYMENTS & SCAM DEFENSE",
     description:
-      "Built production features for a B2B industrial sourcing platform, architecting a serverless backend on Firestore, Resend and HubSpot CRM for data persistence, transactional email and automated lead synchronization. Developed an interactive landed-cost calculator modeling freight, duty and handling, alongside 15+ responsive pages spanning product, catalog, industry and RFQ workflows. Improved production readiness through site-wide WCAG 2.1 AA accessibility, security, SEO and performance work, including JSON-LD structured data and deployment hardening.",
-    result: "15+ RESPONSIVE PAGES · WCAG 2.1 AA",
-    note: "NEXT.JS · REACT · TYPESCRIPT · FIRESTORE · RESEND · HUBSPOT",
-    source: "https://github.com/dhruv-1100/AaronTech-web",
+      "A voice-first shopping agent for older adults — a kitchen kiosk or an inbound phone call, in English, Spanish or Hindi — that buys groceries, pays bills and handles returns strictly inside rules a family caregiver signs with a WebAuthn passkey over a canonical JCS hash. The model never decides a payment: policy re-prices every cart from the catalog and applies those signed rules deterministically, then carries each order to the store as an RFC 9421 HTTP Message Signature in Trusted Agent Protocol header format, which the store verifies against the agent's JWKS before accepting. Scams are caught in two layers — a rule lexicon across English, Spanish, Hindi and Hinglish answers known scripts in under a second, and anything new goes to Grok's Responses API with X and web search, which returns citations. The sandbox card's real-time authorization webhook is answered in under a millisecond, and every decision lands on a live Trust Ledger with a dollars-protected counter.",
+    contribution:
+      "Built the caregiver side and the money path. Priyank's phone app and its passkey sign-in: he signs the spending rules once, and that signature is what policy trusts from then on. The policy checkout service decides allow, approve or deny in code — the model only proposes a cart — and signs an allow before it reaches the merchant; a real passkey assertion places the order, and a self-signed mandate is rejected. Approvals sit behind a caregiver sign-in, so a stranger on the same link gets nothing, and Chrome shows the amount and the store before the fingerprint, falling back to a normal passkey on browsers that can't. Built the card guard too — every swipe checked against the signed rules with no model on that path, so a grocery swipe passes and a gift-card store is declined, and Priyank can allow one retry or keep a blocked hold blocked — then connected it to Lithic, where a live sandbox swipe approved $20 and declined a $50 gift-card charge. Extended the mandate across the four stores and the power bill, split checkout into one signed order per store, and added the post-purchase controls: pause and resume, order history, cancel, refunds priced from the order itself, and Why?. Rebuilt the app into Home, Safety, Approvals, Activity and Rules, with the weekly digest and Ruth's spoken agreement beside the signed rules; wired the seams the rest of the team built on — the co-sign route, the scam-check markers behind Why?, the swipe token on each card decision — and wrote the security evidence that records what the tests cover and what is not a certification.",
+    result: "25/25 SCAMS CAUGHT ON HELD-OUT SCRIPTS",
+    note: "102-SCRIPT, 4-LANGUAGE EVAL · GROK VOICE · MCP · FASTAPI · WEBAUTHN · RFC 9421 · VISA & LITHIC SANDBOX",
+    source: "https://github.com/dhruv-1100/chaperone",
     image: {
-      src: "/images/aaron-technologies.jpg",
-      alt: "The Aaron Technologies homepage: an industrial sourcing site headlined \"Your BOM, one partner, 30+ factories\".",
+      src: "/images/chaperone.jpg",
+      alt: "The Chaperone Trust Ledger: a live wall of decisions across four guards — Ask, Card, Agent and Family — beside the signed spending rules and a $2,500 protected counter.",
     },
-    media: ["PRODUCTION SITE", "SCREENSHOT"],
+    media: ["TRUST LEDGER", "SCREENSHOT"],
   },
   {
     num: "02",
+    title: "Mise — Video-to-Recipe Extraction Platform",
+    category: "FULL-STACK PLATFORM",
+    description:
+      "A production platform converting cooking videos into typed, scalable recipes — a Next.js BFF speaking gRPC to a Python extraction service, over a Redis job queue with idempotency, exponential-backoff retry, dead-lettering and caching. A dependency-free TypeScript engine applies cooking semantics rather than arithmetic: seasoning grows sublinearly, countable ingredients round to whole units, baking ratios stay exact — verified by property-based tests held at 100% branch coverage in CI. When a creator's description carries no recipe, sampling put that at one in five, the pipeline falls back to reading the video itself. Provisioned in Terraform, deployed to Cloud Run by keyless OIDC federation.",
+    result: "657 TESTS · 100% BRANCH COVERAGE",
+    note: "NEXT.JS · TYPESCRIPT · PYTHON · GRPC · REDIS · POSTGRES · TERRAFORM · GEMINI",
+    live: "https://mise-prod.vercel.app",
+    source: "https://github.com/dhruv-1100/Mise",
+    media: ["COOK MODE", "OR EXTRACTION RUN"],
+  },
+  {
+    num: "03",
+    title: "Airlock",
+    category: "ON-DEVICE DLP",
+    description:
+      "Intercepts the clipboard payload the moment company data is about to leave a laptop for an unapproved cloud AI tool, inspects it locally, blocks it with a cited policy clause, and re-routes the question to a 35B model on the box so the employee still gets an answer. Nothing leaves the machine: every verdict reports bytes_egressed: 0, and the agent runtime is denied egress at the proxy — enforced outside the sandbox, unmodifiable from within it. Measured at a 4.00% false-positive rate over 1,000 benign pastes drawn from six independently-licensed sources, with zero false positives across 480 items of Stack Exchange, Wikipedia, MBPP and HumanEval.",
+    result: "4.00% FPR · 0 BYTES EGRESSED",
+    note: "CHROME MV3 · PYTHON · vLLM · MONGODB · NEMOTRON",
+    source: "https://github.com/dhruv-1100/AirLock",
+    image: {
+      src: "/images/airlock.jpg",
+      alt: "An Airlock verdict: a customer-record paste blocked before leaving the machine, citing policy POL-004, with classifier confidence 0.94, a 312 ms decision, and bytes egressed 0.",
+    },
+    media: ["VERDICT CARD", "SCREENSHOT"],
+  },
+  {
+    num: "04",
+    title: "Raft Consensus & Multi-Paxos Sequencer",
+    category: "DISTRIBUTED SYSTEMS",
+    description:
+      "Implemented Raft consensus — leader election, replicated logs, fault-tolerant recovery — for a distributed key-value system, validated under simulated node failures and network partitions. Extended it with a deterministic-ordering transaction engine using a global sequencer and Multi-Paxos to guarantee strictly serializable execution.",
+    result: "200+ TPS / 3 REPLICAS",
+    note: "390+ TPS SINGLE-REPLICA · TPC-C ON MAKO · MASSTREE",
+    source: "https://github.com/dhruv-1100/mako-pr",
+    image: {
+      src: "/images/mako-calvin.jpg",
+      alt: "Architecture: a client transaction enters partition 0, where a deterministic scheduler submits a slot to the Multi-Paxos coordinator, replicates to two Paxos replicas, executes against Masstree, and broadcast-dispatches to a worker partition.",
+    },
+    media: ["ARCHITECTURE DIAGRAM", "OR DISPATCH FLOW"],
+  },
+  {
+    num: "05",
     title: "FreightRoom",
     award: "★ WINNER 2026",
     category: "MULTI-AGENT SYSTEMS",
@@ -51,22 +97,7 @@ const PROJECTS: Project[] = [
     media: ["AGENT TOPOLOGY", "DIAGRAM OR UI CAPTURE"],
   },
   {
-    num: "03",
-    title: "Raft Consensus & Multi-Paxos Sequencer",
-    category: "DISTRIBUTED SYSTEMS",
-    description:
-      "Implemented Raft consensus — leader election, replicated logs, fault-tolerant recovery — for a distributed key-value system, validated under simulated node failures and network partitions. Extended it with a deterministic-ordering transaction engine using a global sequencer and Multi-Paxos to guarantee strictly serializable execution.",
-    result: "200+ TPS / 3 REPLICAS",
-    note: "390+ TPS SINGLE-REPLICA · TPC-C ON MAKO · MASSTREE",
-    source: "https://github.com/dhruv-1100/mako-pr",
-    image: {
-      src: "/images/mako-calvin.jpg",
-      alt: "Architecture: a client transaction enters partition 0, where a deterministic scheduler submits a slot to the Multi-Paxos coordinator, replicates to two Paxos replicas, executes against Masstree, and broadcast-dispatches to a worker partition.",
-    },
-    media: ["ARCHITECTURE DIAGRAM", "OR DISPATCH FLOW"],
-  },
-  {
-    num: "04",
+    num: "06",
     title: "Argus — Local AI Compliance Platform",
     category: "ON-DEVICE MULTIMODAL AI",
     description:
@@ -81,7 +112,22 @@ const PROJECTS: Project[] = [
     media: ["DETECTION OVERLAY", "SCREENSHOT"],
   },
   {
-    num: "05",
+    num: "07",
+    title: "Aaron Technologies",
+    category: "B2B INDUSTRIAL SOURCING",
+    description:
+      "Built production features for a B2B industrial sourcing platform, architecting a serverless backend on Firestore, Resend and HubSpot CRM for data persistence, transactional email and automated lead synchronization. Developed an interactive landed-cost calculator modeling freight, duty and handling, alongside 15+ responsive pages spanning product, catalog, industry and RFQ workflows. Improved production readiness through site-wide WCAG 2.1 AA accessibility, security, SEO and performance work, including JSON-LD structured data and deployment hardening.",
+    result: "15+ RESPONSIVE PAGES · WCAG 2.1 AA",
+    note: "NEXT.JS · REACT · TYPESCRIPT · FIRESTORE · RESEND · HUBSPOT",
+    source: "https://github.com/dhruv-1100/AaronTech-web",
+    image: {
+      src: "/images/aaron-technologies.jpg",
+      alt: "The Aaron Technologies homepage: an industrial sourcing site headlined \"Your BOM, one partner, 30+ factories\".",
+    },
+    media: ["PRODUCTION SITE", "SCREENSHOT"],
+  },
+  {
+    num: "08",
     title: "ConsensusPrompt",
     category: "MULTI-AGENT SYSTEMS",
     description:
@@ -96,7 +142,7 @@ const PROJECTS: Project[] = [
     media: ["REVIEW LOOP DIAGRAM", "OR STUDY RESULTS"],
   },
   {
-    num: "06",
+    num: "09",
     title: "OnboardOps",
     category: "DEVELOPER TOOLING",
     description:
@@ -109,48 +155,6 @@ const PROJECTS: Project[] = [
       alt: "OnboardOps architecture: a FastAPI backend exposing seven Git analysis tools over MCP, bridged to a Next.js dashboard by WebSocket events.",
     },
     media: ["DEPENDENCY GRAPH", "SCREENSHOT"],
-  },
-  {
-    num: "07",
-    title: "Mise — Video-to-Recipe Extraction Platform",
-    category: "FULL-STACK PLATFORM",
-    description:
-      "A production platform converting cooking videos into typed, scalable recipes — a Next.js BFF speaking gRPC to a Python extraction service, over a Redis job queue with idempotency, exponential-backoff retry, dead-lettering and caching. A dependency-free TypeScript engine applies cooking semantics rather than arithmetic: seasoning grows sublinearly, countable ingredients round to whole units, baking ratios stay exact — verified by property-based tests held at 100% branch coverage in CI. When a creator's description carries no recipe, sampling put that at one in five, the pipeline falls back to reading the video itself. Provisioned in Terraform, deployed to Cloud Run by keyless OIDC federation.",
-    result: "657 TESTS · 100% BRANCH COVERAGE",
-    note: "NEXT.JS · TYPESCRIPT · PYTHON · GRPC · REDIS · POSTGRES · TERRAFORM · GEMINI",
-    live: "https://mise-prod.vercel.app",
-    source: "https://github.com/dhruv-1100/Mise",
-    media: ["COOK MODE", "OR EXTRACTION RUN"],
-  },
-  {
-    num: "08",
-    title: "Airlock",
-    category: "ON-DEVICE DLP",
-    description:
-      "Intercepts the clipboard payload the moment company data is about to leave a laptop for an unapproved cloud AI tool, inspects it locally, blocks it with a cited policy clause, and re-routes the question to a 35B model on the box so the employee still gets an answer. Nothing leaves the machine: every verdict reports bytes_egressed: 0, and the agent runtime is denied egress at the proxy — enforced outside the sandbox, unmodifiable from within it. Measured at a 4.00% false-positive rate over 1,000 benign pastes drawn from six independently-licensed sources, with zero false positives across 480 items of Stack Exchange, Wikipedia, MBPP and HumanEval.",
-    result: "4.00% FPR · 0 BYTES EGRESSED",
-    note: "CHROME MV3 · PYTHON · vLLM · MONGODB · NEMOTRON",
-    source: "https://github.com/dhruv-1100/AirLock",
-    image: {
-      src: "/images/airlock.jpg",
-      alt: "An Airlock verdict: a customer-record paste blocked before leaving the machine, citing policy POL-004, with classifier confidence 0.94, a 312 ms decision, and bytes egressed 0.",
-    },
-    media: ["VERDICT CARD", "SCREENSHOT"],
-  },
-  {
-    num: "09",
-    title: "Chaperone — Voice-First Agent for Older Adults",
-    category: "AGENTIC PAYMENTS & SCAM DEFENSE",
-    description:
-      "A voice-first shopping agent for older adults — a kitchen kiosk or an inbound phone call, in English, Spanish or Hindi — that buys groceries, pays bills and handles returns strictly inside rules a family caregiver signs with a WebAuthn passkey over a canonical JCS hash. The model never decides a payment: policy re-prices every cart from the catalog and applies those signed rules deterministically, then carries each order to the store as an RFC 9421 HTTP Message Signature in Trusted Agent Protocol header format, which the store verifies against the agent's JWKS before accepting. Scams are caught in two layers — a rule lexicon across English, Spanish, Hindi and Hinglish answers known scripts in under a second, and anything new goes to Grok's Responses API with X and web search, which returns citations. The sandbox card's real-time authorization webhook is answered in under a millisecond, and every decision lands on a live Trust Ledger with a dollars-protected counter.",
-    result: "25/25 SCAMS CAUGHT ON HELD-OUT SCRIPTS",
-    note: "102-SCRIPT, 4-LANGUAGE EVAL · GROK VOICE · MCP · FASTAPI · WEBAUTHN · RFC 9421 · VISA & LITHIC SANDBOX",
-    source: "https://github.com/dhruv-1100/chaperone",
-    image: {
-      src: "/images/chaperone.jpg",
-      alt: "The Chaperone Trust Ledger: a live wall of decisions across four guards — Ask, Card, Agent and Family — beside the signed spending rules and a $2,500 protected counter.",
-    },
-    media: ["TRUST LEDGER", "SCREENSHOT"],
   },
 ];
 
@@ -265,6 +269,12 @@ export default function Work() {
                   <div />
                   <div>
                     <p className="acc-copy">{project.description}</p>
+                    {project.contribution && (
+                      <div className="acc-contrib">
+                        <span className="acc-role">MY CONTRIBUTION</span>
+                        <p>{project.contribution}</p>
+                      </div>
+                    )}
                     <div className="acc-meta">
                       <span className="is-accent">{project.result}</span>
                       <span>{project.note}</span>

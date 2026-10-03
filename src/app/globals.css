@@ -704,6 +704,30 @@ button:focus-visible {
   margin-bottom: 22px;
 }
 
+/* Separates what the team shipped from what I personally built. */
+.acc-contrib {
+  max-width: 620px;
+  margin-bottom: 22px;
+  padding-left: 18px;
+  border-left: 1px solid rgba(var(--accent-rgb), 0.35);
+}
+
+.acc-role {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.acc-contrib p {
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--text-3);
+  text-wrap: pretty;
+}
+
 .acc-meta {
   display: flex;
   gap: 26px;
@@ -749,6 +773,9 @@ button:focus-visible {
   display: block;
   background-image: none;
   background: rgba(255, 255, 255, 0.02);
+  /* The media cell stretches to the text column. Past this the crop zooms
+     past the source's own pixels, so cap it and let the copy run on. */
+  max-height: 420px;
 }
 
 .acc-media.has-image img {
@@ -1161,6 +1188,7 @@ button:focus-visible {
   .acc-head { grid-template-columns: 54px 1fr 30px; }
   .acc-cat { display: none; }
   .acc-inner { grid-template-columns: 54px 1fr; }
+  .acc-contrib { padding-left: 14px; }
 
   /* The captioned placeholder frames are decorative, so they go; real
      screenshots stay but must span both columns. Without this they wrap into
