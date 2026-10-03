@@ -137,6 +137,21 @@ const PROJECTS: Project[] = [
     },
     media: ["VERDICT CARD", "SCREENSHOT"],
   },
+  {
+    num: "09",
+    title: "Chaperone — Voice-First Agent for Older Adults",
+    category: "AGENTIC PAYMENTS & SCAM DEFENSE",
+    description:
+      "A voice-first shopping agent for older adults — a kitchen kiosk or an inbound phone call, in English, Spanish or Hindi — that buys groceries, pays bills and handles returns strictly inside rules a family caregiver signs with a WebAuthn passkey over a canonical JCS hash. The model never decides a payment: policy re-prices every cart from the catalog and applies those signed rules deterministically, then carries each order to the store as an RFC 9421 HTTP Message Signature in Trusted Agent Protocol header format, which the store verifies against the agent's JWKS before accepting. Scams are caught in two layers — a rule lexicon across English, Spanish, Hindi and Hinglish answers known scripts in under a second, and anything new goes to Grok's Responses API with X and web search, which returns citations. The sandbox card's real-time authorization webhook is answered in under a millisecond, and every decision lands on a live Trust Ledger with a dollars-protected counter.",
+    result: "25/25 SCAMS CAUGHT ON HELD-OUT SCRIPTS",
+    note: "102-SCRIPT, 4-LANGUAGE EVAL · GROK VOICE · MCP · FASTAPI · WEBAUTHN · RFC 9421 · VISA & LITHIC SANDBOX",
+    source: "https://github.com/dhruv-1100/chaperone",
+    image: {
+      src: "/images/chaperone.jpg",
+      alt: "The Chaperone Trust Ledger: a live wall of decisions across four guards — Ask, Card, Agent and Family — beside the signed spending rules and a $2,500 protected counter.",
+    },
+    media: ["TRUST LEDGER", "SCREENSHOT"],
+  },
 ];
 
 export default function Work() {
@@ -199,7 +214,7 @@ export default function Work() {
       <div className="section-head reveal">
         <div>
           <div className="eyebrow">01 — SELECTED WORK</div>
-          <h2 className="h2">Eight systems, eight measurable results.</h2>
+          <h2 className="h2">Nine systems, nine measurable results.</h2>
         </div>
         <div className="section-hint">click a row to expand ↓</div>
       </div>
