@@ -17,6 +17,7 @@ that ship.
 
 | Project | Result |
 | --- | --- |
+| **[Chaperone](https://github.com/dhruv-1100/chaperone)** — voice-first shopping agent that keeps older adults inside caregiver-signed rules | 25/25 scams caught on held-out scripts |
 | **[Mise](https://mise-prod.vercel.app)** — video-to-recipe extraction ([source](https://github.com/dhruv-1100/Mise)) | 657 tests at 100% branch coverage |
 | **[Airlock](https://github.com/dhruv-1100/AirLock)** — on-device DLP for clipboard data | 4.00% false-positive rate, 0 bytes egressed |
 | **[Aaron Technologies](https://github.com/dhruv-1100/AaronTech-web)** — B2B industrial sourcing platform | 15+ responsive pages, shipped to WCAG 2.1 AA |
