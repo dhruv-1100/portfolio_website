@@ -1,7 +1,9 @@
 import CopyEmailButton from "./CopyEmailButton";
 import {
+  BASE_PATH,
   EMAIL,
   LINKEDIN,
+  NAME,
   PHONE_DISPLAY,
   PHONE_HREF,
   RESUME_PATH,
@@ -13,6 +15,18 @@ export default function Contact() {
       <div className="glass contact-card reveal" data-glass>
         <div className="sheen" data-sheen aria-hidden="true" />
         <div className="contact-grid">
+          {/* Plain <img>: next/image is disabled under output: export. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="contact-photo"
+            src={`${BASE_PATH}/images/dhruv-portrait.jpg`}
+            alt={NAME}
+            width={200}
+            height={250}
+            loading="lazy"
+            decoding="async"
+          />
+
           <div>
             <div className="eyebrow">05 — CONTACT</div>
             <h2 className="contact-title">
